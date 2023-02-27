@@ -1,4 +1,4 @@
-import './Main.css';
+import s from '../Main/style.module.css';
 import articls from '../data/articls.json';
 
 
@@ -9,7 +9,7 @@ function Main(){
             {/* {articls.map(item=><h2>{item.title}</h2>)} */}
         
             {articls.map(item=>
-            <section>
+            <section className={s.section}>
                 <h2>{item.title}</h2>
                 <div>{item.body}</div>
             </section>
