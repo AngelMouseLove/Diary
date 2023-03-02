@@ -10,28 +10,27 @@
   column-gap: 15px;
   align-items: center;
   padding: 20px;
-  
+
 }
+
 .item {
   list-style-type: none;
-  
+
 }
 
 .link {
-  text-decoration: none; 
-  color:rgb(6, 6, 10); 
-  padding: 10px; 
-  
+  text-decoration: none;
+  color: rgb(6, 6, 10);
+  padding: 10px;
+
 }
 
 .link:hover {
-  background-color:rgb(6, 6, 10);
-  color:rgba(155,238,255,1);
+  background-color: rgb(6, 6, 10);
+  color: rgba(155, 238, 255, 1);
   border-radius: 25px;
-  opacity: .6; 
+  opacity: .6;
   transition: all 0.3s 0.01s linear;
   transform: scale(1.2);
   box-shadow: 0px 3px 20px 0px black;
 }
-
-

@@ -23,7 +23,9 @@
   height: 4.5rem;
 }
 
-.linkLogo{
+.linkLogo {
+  display: flex;
+  align-items: center;
   text-decoration: none;
   cursor: pointer;
 }
