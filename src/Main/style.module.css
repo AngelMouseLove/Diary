@@ -17,3 +17,9 @@ section:hover{
   transform: scale(1.015);
   transition-duration: .4s;
 }
+
+.gridContainer {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 0 !important;
+}
