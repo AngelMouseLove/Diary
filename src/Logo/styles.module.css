@@ -1,0 +1,31 @@
+.logo {
+  position: relative;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+.logo > span {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  font-size: 20px;
+  font-weight: 700;
+  opacity: .7;
+}
+
+.logo > span:hover {
+  opacity: 1;
+}
+
+.img {
+  width: 6.0rem;
+  height: 4.5rem;
+}
+
+.linkLogo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}

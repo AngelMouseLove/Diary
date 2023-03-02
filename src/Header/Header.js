@@ -1,12 +1,13 @@
-import './Header.css';
+import Logo from "../Logo/Logo";
+import s from "../Header/styles.module.css";
+import Menu from "../Menu/Menu";
 
-function Header(){
-    return (
-        <div className="Header-site-header">
-            <h1>Акватория</h1>
-            <h2>utp slogan</h2>
-        </div>
-    );
-
+export default function Header() {
+  return (
+    <div className={s.header}>
+      <Logo />
+      <Menu />
+      <div>Что то тут!</div>
+    </div>
+  );
 }
-export default Header;

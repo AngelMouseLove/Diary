@@ -1,12 +1,10 @@
-import './footer.css';
+import s from "../Footer/styles.module.css";
 
-function Footer(){
-    return (
-        <div className="Footer-site-footer">
-            <b>React site</b>
-            <p>2023 copyright. All rights reserved</p>
-        </div>
-    );
-
+function Footer() {
+  return (
+    <div className={s.footer}>
+      <span>2023 copyright. All rights reserved</span>
+    </div>
+  );
 }
 export default Footer;

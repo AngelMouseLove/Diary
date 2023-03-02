@@ -1,23 +1,27 @@
-*{
-    font-family: cursive;
-    color:rgb(6, 6, 10);
-
+* {
+  font-family: 'Lato', sans-serif;
+  color: rgb(6, 6, 10);
 }
 
-.container{
-    margin: 0;
-    /* display: grid; */
-    /* grid-template-areas: 
+.container {
+  /* display: grid; */
+  /* grid-template-areas: 
         "h h h"
         "m m s"
         "f f f" */
-    ;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 10px;
 }
 
-body{
-    /* background-color: rgb(161, 191, 247); */
-    background: url(image/pero.jpg) no-repeat ;
-    background-size: 100% auto;
-    
-    
+body {
+/*   background-color: rgb(161, 191, 247); */
+ /* background: url(image/pero.jpg) no-repeat;*/
+  /*background-size: 100% auto;*/
+  /*background: rgb(255,230,241);*/
+  background: rgb(2,0,36);
+  background: linear-gradient(66deg, rgba(2,0,36,1) 0%, rgba(194,207,213,1) 0%, rgba(168,206,209,1) 25%, rgba(141,233,241,1) 54%, rgba(155,238,255,1) 100%);
+  min-height: 100vh;
 }
+
+
