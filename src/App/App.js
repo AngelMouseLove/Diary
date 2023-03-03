@@ -15,12 +15,12 @@ const darkTheme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
-    <CssBaseline />
-    <div className="container">
-      <Header />  
-      <Main />
+      <CssBaseline />
+      <Header />
+      <div className="container">
+        <Main />
+      </div>
       <Footer />
-    </div>
     </ThemeProvider>
   );
 }

@@ -1,22 +1,20 @@
-import s from '../Menu/styles.module.css'
+import "../Menu/styles.css"
 
 const Menu = () => {
   return (
-    <div className={s.menu}>
-      <ul className={s.navigation}>
-        <li className={s.item} >
-          <a className={s.link} href="#">О себе</a>
-        </li>
-        <li className={s.item}>
-          <a className={s.link} href="#">Мои друзья</a>
-        </li>
-        <li className={s.item}>
-          <a className={s.link} href="#">Мои контакты</a>
-        </li>
-        <li className={s.item}>
-          <a className={s.link} href="#">Оставить заметку</a>
-        </li>
-      </ul>
+    <div className="menu">
+      <input type="checkbox" id="active"/>
+      <label for="active" className="menu-btn"><span></span></label>
+      <label for="active" className="close"></label>
+      <div className="wrapper">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Feedback</a></li>
+        </ul>
+      </div>
     </div>
   )
 }
