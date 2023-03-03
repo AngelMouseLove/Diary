@@ -1,10 +1,13 @@
 import Logo from "../Logo/Logo";
-import s from "../Header/styles.module.css"
+import s from "../Header/styles.module.css";
+import Menu from "../Menu/Menu";
 
-export default function Header(){
-    return (
-        <div className={s.header}>
-            <Logo/>
-        </div>
-    );
+export default function Header() {
+  return (
+    <div className={s.header}>
+      <Logo />
+      <Menu />
+      <div>Что то тут!</div>
+    </div>
+  );
 }

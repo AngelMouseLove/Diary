@@ -1,20 +1,22 @@
 import s from '../Main/style.module.css';
-import articls from '../data/articls.json';
+import articles from '../data/articls.json';
+import BasicCard from '../Card/BasicCard';
+import { Card, Grid } from '@mui/material';
 
 
 function Main(){
     return(
-        <div className="Main">
-            {/* выведем заголовки */}
-            {/* {articls.map(item=><h2>{item.title}</h2>)} */}
-        
-            {articls.map(item=>
-            <section className={s.section}>
-                <h2>{item.title}</h2>
-                <div>{item.body}</div>
-            </section>
-            )}
-        </div>
+        <>
+        <Grid container spacing={4} className={s.gridContainer}>
+            {
+                articles.map(item=>
+                    <Grid key={item.title} item xs={12} sm={6} md={4}>
+                        <BasicCard article={item} />
+                    </Grid>
+                )
+            }
+        </Grid>
+        </>
     );
 }
 
