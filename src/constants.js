@@ -1,0 +1,1 @@
+export const MAX_CARD_BODY_LENGTH = 250;

@@ -6,12 +6,13 @@
 }
 
 .logo > span {
+  color: rgb(0, 0, 0);
   position: absolute;
   top: 20px;
   left: 25px;
   font-size: 20px;
   font-weight: 700;
-  opacity: .7;
+  opacity: 1.0;
 }
 
 .logo > span:hover {
