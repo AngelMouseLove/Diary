@@ -8,6 +8,7 @@ export default function Header() {
       <Logo />
       <Menu />
       <div>Что то тут!</div>
+      <Logo />
     </div>
   );
 }
