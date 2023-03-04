@@ -1,10 +1,16 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 30px;
+  align-items: center;
+  border: 0;
+  background-color: #1a3d7bbe;
+  
 }
 
-@media (max-width: 750px) {
-  
+.container {
+  max-width: 1700px;
+  margin: 0 auto;
   
 }
+
