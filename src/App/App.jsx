@@ -4,7 +4,7 @@ import Main from "../Main/Main";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import "./App.css";
-
+import NotFound from "../NotFound/NotFound";
 
 const darkTheme = createTheme({
   palette: {
@@ -15,12 +15,13 @@ const darkTheme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
-    <CssBaseline />
-    <div className="container">
-      <Header />  
-      <Main />
+      <CssBaseline />
+      <Header />
+      <div className="container">
+        <Main />
+    <NotFound/>
+      </div>
       <Footer />
-    </div>
     </ThemeProvider>
   );
 }

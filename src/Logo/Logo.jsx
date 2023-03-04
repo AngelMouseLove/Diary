@@ -1,12 +1,12 @@
 import s from '../Logo/styles.module.css';
-import book from '../Logo/img/book.png'
+import book from '../Logo/img/Logo.svg'
 
 export default function Logo() {
   return (
-    <a className={s.linkLogo} href="">
+    <a className={s.linkLogo} href="#">
       <div className={s.logo}>
-        <span>Diary</span>
         <img className={s.img} src={book} alt="book" />
+        <span className={s.title}>DIARY</span>
       </div>
     </a>
   )
