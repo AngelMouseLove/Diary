@@ -36,7 +36,6 @@ const cropBody = function(body) {
 }
 
 export default function BasicCard({article}) {
-  console.log(article)
 
   return (
     <Card sx={{ maxWidth: 345 }}>
