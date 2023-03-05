@@ -27,16 +27,17 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const cropBody = function(body) {
+const cropText = function(text) {
   console.log(MAX_CARD_BODY_LENGTH)
-  if (body.length > MAX_CARD_BODY_LENGTH) {
-    return body.substring(0, body.substr(0, MAX_CARD_BODY_LENGTH).lastIndexOf(" ")) + " ...";
+  if (text.length > MAX_CARD_BODY_LENGTH) {
+    return text.substring(0, text.substr(0, MAX_CARD_BODY_LENGTH).lastIndexOf(" ")) + " ...";
   }
-  return body;
+  return text;
 }
 
-export default function BasicCard({article}) {
-  console.log(article)
+export default function BasicCard({post}) {
+
+  console.log(post)
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -52,7 +53,7 @@ export default function BasicCard({article}) {
             <MoreVertIcon />
           </IconButton>
         }
-        title={article.title}
+        title={post.title}
         subheader="September 14, 2016"
       />
         {/* Если нужно будет добавить картинку, то сделать условный оператор imageExist && <CardMedia ... */}
@@ -65,7 +66,7 @@ export default function BasicCard({article}) {
       <CardContent>
         <Typography variant="body1" color="text.secondary">
           {
-            cropBody(article.body)
+            cropText(post.text)
           }
         </Typography>
       </CardContent>

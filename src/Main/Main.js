@@ -1,17 +1,31 @@
 import s from '../Main/style.module.css';
-import articles from '../data/articls.json';
+// import articles from '../data/articls.json';
+import api from '../API';
 import BasicCard from '../Card/BasicCard';
 import { Card, Grid } from '@mui/material';
+import { useState, useEffect } from 'react';
+
 
 
 function Main(){
+    const [currentUser, setCurrentUser] = useState({});
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        Promise.all([api.getPosts(), api.getUserInfo()])
+          .then(([postsData, userData]) => {
+            setCurrentUser(userData);
+            setPosts(postsData.filter(post => post.author._id === userData._id));
+          });
+      }, []);
+
     return(
         <>
         <Grid container spacing={4} className={s.gridContainer}>
-            {
-                articles.map(item=>
-                    <Grid key={item.title} item xs={12} sm={6} md={4}>
-                        <BasicCard article={item} />
+            {               
+                posts.map(post=>
+                    <Grid key={post.title} item xs={12} sm={6} md={4}>
+                        <BasicCard post={post} />
                     </Grid>
                 )
             }
