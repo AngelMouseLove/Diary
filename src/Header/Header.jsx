@@ -8,9 +8,8 @@ export default function Header() {
     <div className={s.header}>
       <div className={s.container}>
         <Logo />
-
         <Menu />
       </div>
     </div>
-  );
-}
+  )
+};
