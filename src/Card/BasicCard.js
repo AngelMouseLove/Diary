@@ -14,7 +14,9 @@ import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import sky from '../img/sky.jpg'
 import { CardActionArea } from '@mui/material';
-import { MAX_CARD_BODY_LENGTH } from '../constants'
+import moment from 'moment';
+import 'moment/locale/ru';
+import { MAX_CARD_BODY_LENGTH, DATE_PATTERN } from '../constants'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,7 +30,6 @@ const ExpandMore = styled((props) => {
 }));
 
 const cropText = function(text) {
-  console.log(MAX_CARD_BODY_LENGTH)
   if (text.length > MAX_CARD_BODY_LENGTH) {
     return text.substring(0, text.substr(0, MAX_CARD_BODY_LENGTH).lastIndexOf(" ")) + " ...";
   }
@@ -36,8 +37,6 @@ const cropText = function(text) {
 }
 
 export default function BasicCard({post}) {
-
-  console.log(post)
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -53,14 +52,14 @@ export default function BasicCard({post}) {
             <MoreVertIcon />
           </IconButton>
         }
-        title={post.title}
-        subheader="September 14, 2016"
+        title={moment(post.title, DATE_PATTERN).format('Do MMMM YYYY, dddd')}
+        // subheader="September 14, 2016"
       />
         {/* Если нужно будет добавить картинку, то сделать условный оператор imageExist && <CardMedia ... */}
       <CardMedia
         component="img"
         height="194"
-        image={sky}
+        image={post.image}
         alt="Sky"
       />
       <CardContent>
