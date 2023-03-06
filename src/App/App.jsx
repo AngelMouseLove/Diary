@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import "./App.css";
 import NotFound from "../NotFound/NotFound";
+import { Post } from "../Post/Post";
 
 const darkTheme = createTheme({
   palette: {
@@ -20,6 +21,7 @@ function App() {
       <div className="container">
         <Main />
         <NotFound />
+        {/* <Post /> */}
       </div>
       <Footer />
     </ThemeProvider>
