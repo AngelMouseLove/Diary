@@ -19,7 +19,7 @@ function App() {
       <Header />
       <div className="container">
         <Main />
-    <NotFound/>
+        <NotFound />
       </div>
       <Footer />
     </ThemeProvider>
