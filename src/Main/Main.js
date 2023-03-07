@@ -2,9 +2,10 @@ import s from '../Main/style.module.css';
 // import articles from '../data/articls.json';
 import api from '../API';
 import BasicCard from '../Card/BasicCard';
-import { Card, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
-
+import moment from 'moment/moment';
+import { DATE_PATTERN } from '../constants'
 
 
 function Main(){
@@ -15,7 +16,11 @@ function Main(){
         Promise.all([api.getPosts(), api.getUserInfo()])
           .then(([postsData, userData]) => {
             setCurrentUser(userData);
-            setPosts(postsData.filter(post => post.author._id === userData._id));
+            setPosts(
+                postsData
+                    .filter(post => post.author._id === userData._id)
+                    .sort((a,b) => moment(b.title, DATE_PATTERN).toDate() - moment(a.title, DATE_PATTERN).toDate())
+            );
           });
       }, []);
 
