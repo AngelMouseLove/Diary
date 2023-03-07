@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./Post.module.css";
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import api from './../API'
 
-export const Post = () => {
+export const Post = ({ post, setPost }) => {
+  
+  
+  
+  // const postInfo = api.getPostById(post._id).then((data) => setPost(data)).catch((err) => console.log(err))
+  // console.log(postInfo)
   return (
     <div>
       <div>
@@ -12,7 +18,7 @@ export const Post = () => {
         </div>
         <div className={s.wrapper}>
           <div>
-            <img className={s.img} src="" alt=""></img>
+            <img className={s.img} src='' alt=""></img>
           </div>
           <div className={s.content}>
             <div className={s.author}>
