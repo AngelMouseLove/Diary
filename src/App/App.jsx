@@ -1,12 +1,15 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Main from "../Main/Main";
+
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./App.css";
-import NotFound from "../NotFound/NotFound";
-import { Post } from "../Post/Post";
+
+
 import { Route, Routes } from 'react-router-dom';
+import PostPage from "../Pages/PostPage/PostPage";
+import PostsPage from "../Pages/PostsPage/PostsPage";
+import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -15,23 +18,26 @@ const darkTheme = createTheme({
 });
 
 function App() {
+
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Header />
       <div className="container">
         <Routes>
-          <Route index element={<Main />} />
-
-          <Route
-            path="/product/:productId"
-            element={<Post />}
+          <Route 
+            index 
+            element={<PostsPage />} 
           />
-          
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="/posts/:postId"
+            element={<PostPage />}
+          />
+          <Route 
+            path="*" 
+            element={<NotFoundPage />}
+          />
         </Routes>
-        
-        <Post />
       </div>
       <Footer />
     </ThemeProvider>

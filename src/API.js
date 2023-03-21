@@ -21,7 +21,7 @@ class Api {
     // }
 
     getPostById(id) {
-        return fetch(`${this._baseUrl}/products/${id}`, this._requestInit).then(onResponce);
+        return fetch(`${this._baseUrl}/posts/${id}`, this._requestInit).then(onResponce);
     }
 
     getUserInfo() {

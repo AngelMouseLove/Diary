@@ -30,7 +30,7 @@ function Main(){
             {               
                 posts.map(post=>
                     <Grid key={post.title} item xs={12} sm={6} md={4}>
-                        <BasicCard post={post} />
+                        <BasicCard {...post} />
                     </Grid>
                 )
             }
