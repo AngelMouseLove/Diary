@@ -16,7 +16,7 @@ export const Post = ({ image, title, text, author, created_at }) => {
           </button>
         </div>
         <div className={s.wrapper}>
-          <div>
+          <div className={s.imgWrapper}>
             <img className={s.img} src={image} alt="post_image"></img>
           </div>
           <div className={s.content}>

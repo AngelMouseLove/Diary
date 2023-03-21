@@ -10,8 +10,7 @@ function PostPage() {
   useEffect(() => {
     api
       .getPostById(postId)
-      .then((post) => {setPost(post)
-      console.log(post)})
+      .then((post) => setPost(post))
       .catch((err) => console.log(err));
   }, [postId]);
 
