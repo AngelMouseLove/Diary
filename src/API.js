@@ -20,9 +20,9 @@ class Api {
     //     return fetch(`${this._baseUrl}/products`, this._requestInit).then(onResponce);
     // }
 
-    // getProductById(id) {
-    //     return fetch(`${this._baseUrl}/products/${id}`, this._requestInit).then(onResponce);
-    // }
+    getPostById(id) {
+        return fetch(`${this._baseUrl}/posts/${id}`, this._requestInit).then(onResponce);
+    }
 
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, this._requestInit).then(onResponce);
