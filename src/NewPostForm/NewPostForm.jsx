@@ -41,7 +41,7 @@ function NewPostForm({ create }) {
     <Box
       sx={{
         position: "absolute",
-        top: "50%",
+        top: "75%",
         left: "50%",
         transform: "translate(-50%, -50%)",
         width: '60vw',
@@ -49,6 +49,7 @@ function NewPostForm({ create }) {
         border: "2px solid #000",
         boxShadow: 24,
         p: 4,
+        textAlign: "center"
       }}
       component="form"
       noValidate
@@ -126,7 +127,7 @@ function NewPostForm({ create }) {
         )}
       />
 
-      <Button type="submit">Записать</Button>
+      <Button type="submit" sx={{mt:"15px"}}>Записать</Button>
     </Box>
   );
 }

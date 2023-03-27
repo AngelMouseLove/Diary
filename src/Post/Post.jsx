@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import s from "./Post.module.css";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export const Post = ({ image, title, text, author, created_at }) => {
@@ -11,9 +12,9 @@ export const Post = ({ image, title, text, author, created_at }) => {
     <div>
       <div>
         <div>
-          <button className={s.btn} onClick={() => navigate(-1)}>
+          <Button variant="contained" onClick={() => navigate(-1)}>
             Назад
-          </button>
+          </Button>
         </div>
         <div className={s.wrapper}>
           <div className={s.imgWrapper}>
