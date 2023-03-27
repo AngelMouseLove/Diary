@@ -40,6 +40,7 @@ export const Post = ({ image, title, text, author, created_at }) => {
             <div>
               <b>{title}</b>
               <p>{text}</p>
+              
             </div>
           </div>
         </div>

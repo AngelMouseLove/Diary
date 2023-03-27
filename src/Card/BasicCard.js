@@ -52,9 +52,9 @@ export default function BasicCard({ _id, title, image, text }) {
               </Avatar>
             }
             action={
-              <IconButton aria-label="settings">
+              // <IconButton aria-label="settings">
                 <MoreVertIcon />
-              </IconButton>
+              // </IconButton>
             }
             title={moment(title, DATE_PATTERN).format(
               "Do MMMM YYYY, dddd"
