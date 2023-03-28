@@ -12,6 +12,18 @@ function Main() {
   const [currentUser, setCurrentUser] = useState({});
   const [posts, setPosts] = useState([]);
 
+  const sortCards = (a, b) => {
+    return moment(b.title, DATE_PATTERN).toDate() - moment(a.title, DATE_PATTERN).toDate();
+  }
+
+  const addIsLikedToPost = (post, userId) => {
+    if (post.likes.includes(userId)) {
+      return { ...post, isLiked: true }
+    } else {
+      return { ...post, isLiked: false }
+    }
+  }
+
 
   useEffect(() => {
     Promise.all([api.getPosts(), api.getUserInfo()]).then(
@@ -20,11 +32,8 @@ function Main() {
         setPosts(
           postsData
             .filter((post) => post.author._id === userData._id)
-            .sort(
-              (a, b) =>
-                moment(b.title, DATE_PATTERN).toDate() -
-                moment(a.title, DATE_PATTERN).toDate()
-            )
+            .map((post) => addIsLikedToPost(post, userData._id))
+            .sort(sortCards)
         );
       }
     );
@@ -32,16 +41,24 @@ function Main() {
 
   const createPost = (newPost) => {
     setPosts([newPost, ...posts])
-    
+  }
+
+
+  // TODO: Рефактор обновления лайка, потому что выглядит с сортировками и добавлениями параметра isLiked 
+  const handleCardLike = (postId, isLike) => {
+    api.changePostLike(postId, isLike)
+      .then((post) => {
+        setPosts([...posts.filter((post) => post._id != postId), addIsLikedToPost(post, currentUser._id)].sort(sortCards))
+      })
   }
 
   return (
     <>
-      <AddPost create={createPost}/>
+      <AddPost create={createPost} />
       <Grid container spacing={4} className={s.gridContainer}>
         {posts.map((post) => (
           <Grid key={post.title} item xs={12} sm={6} md={4}>
-            <BasicCard {...post} />
+            <BasicCard {...post} onLike={() => handleCardLike(post._id, post.isLiked)} />
           </Grid>
         ))}
       </Grid>
