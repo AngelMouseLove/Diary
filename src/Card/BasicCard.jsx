@@ -43,38 +43,31 @@ const cropText = function (text) {
 export default function BasicCard({ _id, title, image, text }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <Link to={`/posts/${_id}`}>
-        <CardActionArea>
-          <CardHeader
-            avatar={
-              <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                R
-              </Avatar>
-            }
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={moment(title, DATE_PATTERN).format(
-              "Do MMMM YYYY, dddd"
-            )}
-            // subheader="September 14, 2016"
-          />
+      <CardActionArea>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              R
+            </Avatar>
+          }
+          action={
+            // <IconButton aria-label="settings">
+            <MoreVertIcon />
+            // </IconButton>
+          }
+          title={moment(title, DATE_PATTERN).format("Do MMMM YYYY, dddd")}
+          // subheader="September 14, 2016"
+        />
+        <Link to={`/posts/${_id}`}>
           {/* Если нужно будет добавить картинку, то сделать условный оператор imageExist && <CardMedia ... */}
-          <CardMedia
-            component="img"
-            height="194"
-            image={image}
-            alt="Sky"
-          />
+          <CardMedia component="img" height="194" image={image} alt="Sky" />
           <CardContent>
             <Typography variant="body1" color="text.secondary">
               {cropText(text)}
             </Typography>
           </CardContent>
-        </CardActionArea>
-      </Link>
+        </Link>
+      </CardActionArea>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
