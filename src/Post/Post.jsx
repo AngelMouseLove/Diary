@@ -4,6 +4,9 @@ import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import "moment/locale/ru";
+import { DATE_PATTERN } from "../constants";
 
 export const Post = ({ image, title, text, author, created_at }) => {
   const navigate = useNavigate();
@@ -32,16 +35,14 @@ export const Post = ({ image, title, text, author, created_at }) => {
               <div>
                 <h3>{author.name}</h3>
                 <h4>{author.about}</h4>
-                <span>{created_at}</span>
               </div>
             </div>
             <IconButton aria-label="add to favorites">
               <FavoriteIcon />
             </IconButton>
-            <div>
-              <b>{title}</b>
+            <div className={s.postContent}>
+              <p><b>{moment(title, DATE_PATTERN).format("Do MMMM YYYY, dddd")}</b></p>
               <p>{text}</p>
-              
             </div>
           </div>
         </div>
