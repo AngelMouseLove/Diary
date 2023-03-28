@@ -1,0 +1,30 @@
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+
+.title {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  font-weight: 700;
+  opacity: 1.0;
+}
+
+.title:hover {
+  opacity: 1;
+
+}
+
+.img {
+  width: 70px;
+  height: 70px;
+}
+
+.linkLogo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}

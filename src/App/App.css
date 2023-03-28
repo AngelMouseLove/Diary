@@ -1,23 +1,18 @@
-*{
-    font-family: cursive;
-    color:rgb(6, 6, 10);
-
+* {
+  /* font-family: 'Lato', sans-serif; */
+  color: rgb(255, 255, 255);
 }
 
-.container{
-    margin: 0;
-    /* display: grid; */
-    /* grid-template-areas: 
-        "h h h"
-        "m m s"
-        "f f f" */
-    ;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 10px;
 }
+
 
 body{
-    /* background-color: rgb(161, 191, 247); */
-    background: url(image/pero.jpg) no-repeat ;
-    background-size: 100% auto;
-    
-    
+  background:url('../img/background.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
+
+
