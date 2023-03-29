@@ -2,13 +2,14 @@ import React from "react";
 import s from "./Post.module.css";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Button } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/ru";
 import { DATE_PATTERN } from "../constants";
+import CommentList from "../CommentList/CommentList";
 
-export const Post = ({ image, title, text, author, created_at }) => {
+export const Post = ({ image, title, text, author, comments }) => {
   const navigate = useNavigate();
 
   return (
@@ -41,9 +42,16 @@ export const Post = ({ image, title, text, author, created_at }) => {
               <FavoriteIcon />
             </IconButton>
             <div className={s.postContent}>
-              <p><b>{moment(title, DATE_PATTERN).format("Do MMMM YYYY, dddd")}</b></p>
+              <p>
+                <b>
+                  {moment(title, DATE_PATTERN).format("Do MMMM YYYY, dddd")}
+                </b>
+              </p>
               <p>{text}</p>
             </div>
+            <Box>
+              <CommentList commentList={comments} author={author} />
+            </Box>
           </div>
         </div>
       </div>

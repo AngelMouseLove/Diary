@@ -47,6 +47,12 @@ class Api {
     }).then(onResponse);
   }
 
+  getUserById(userId) {
+    return fetch(`https://api.react-learning.ru/users/${userId}`, {
+      headers: this._headers,
+    }).then(onResponse);
+  }
+
   // search(searchQuery) {
   //     return fetch(
   //         `${this._baseUrl}/products/search?query=${searchQuery}`,
