@@ -5,6 +5,8 @@ import DialogActions from "@mui/material/DialogActions";
 import api from "../API";
 import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
+import { titleValidation } from "../validation";
+import { urlValidation } from "../validation";
 import s from "./NewPostForm.module.css";
 
 function NewPostForm({ create, close }) {
@@ -26,7 +28,6 @@ function NewPostForm({ create, close }) {
 
   const addNewPost = (post) => {
     const newPost = { ...post, tags: post.tags.split(", ") };
-
     api
       .createPost(newPost)
       .then((postData) => {
@@ -44,7 +45,7 @@ function NewPostForm({ create, close }) {
           <Controller
             name="image"
             control={control}
-            rules={{ required: "Обязательное поле" }}
+            rules={urlValidation}
             render={({ field: { onChange, value } }) => (
               <TextField
                 label="Картинка воспоминания (URL)"
@@ -53,6 +54,8 @@ function NewPostForm({ create, close }) {
                 fullWidth
                 value={value}
                 onChange={(e) => onChange(e)}
+                error={!!errors.image?.message}
+                helperText={errors.image?.message}
               />
             )}
           />
@@ -69,7 +72,7 @@ function NewPostForm({ create, close }) {
           <Controller
             name="title"
             control={control}
-            rules={{ required: "Обязательное поле" }}
+            rules={titleValidation}
             render={({ field: { onChange, value } }) => (
               <TextField
                 label="Введите дату события"
@@ -78,6 +81,8 @@ function NewPostForm({ create, close }) {
                 fullWidth
                 value={value}
                 onChange={(e) => onChange(e)}
+                error={!!errors.title?.message}
+                helperText="Введите дату в формате ДД.ММ.ГГГГ"
               />
             )}
           />
@@ -111,6 +116,7 @@ function NewPostForm({ create, close }) {
                 fullWidth
                 value={value}
                 onChange={(e) => onChange(e)}
+                helperText="Введите слова через запятую"
               />
             )}
           />
