@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from "react";
 import api from "../API";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useParams } from "react-router-dom";
 import s from "./Comment.module.css";
 
-function Comment({ author, text, created_at }) {
+function Comment({
+  author,
+  text,
+  created_at,
+  _id,
+  setNewComments,
+  newComments,
+}) {
   const [authorComment, setAuthorComment] = useState({});
+
+  const { postId } = useParams();
 
   useEffect(() => {
     api
@@ -12,6 +23,14 @@ function Comment({ author, text, created_at }) {
       .then((authorData) => setAuthorComment(authorData))
       .catch((err) => console.log(err));
   }, [author]);
+
+  const delComment = () => {
+    setNewComments(newComments.filter((c) => c._id !== newComments._id));
+    api
+      .delComment(postId, _id)
+      .then((data) => setNewComments(data.comments))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <Box>
@@ -34,10 +53,13 @@ function Comment({ author, text, created_at }) {
           month: "long",
           day: "numeric",
           hour: "numeric",
-          minute: "numeric"
+          minute: "numeric",
         })}
       </Box>
       <Box component={"p"}>{text}</Box>
+      <Button onClick={delComment} sx={{ m: "0 0 0 auto", display: "block" }}>
+        <DeleteIcon />
+      </Button>
     </Box>
   );
 }

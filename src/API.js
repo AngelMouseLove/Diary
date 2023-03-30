@@ -61,6 +61,12 @@ class Api {
     }).then(onResponse);
   }
   
+  delComment(postId, commentId) {
+    return fetch(`${this._baseUrl}/posts/comments/${postId}/${commentId}`, {
+      method: "DELETE",
+      headers: this._headers
+    }).then(onResponse);
+  }
 
   // search(searchQuery) {
   //     return fetch(
