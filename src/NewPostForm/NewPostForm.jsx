@@ -33,15 +33,15 @@ function NewPostForm({ create, close }) {
       .then((postData) => {
         create(postData);
       })
-      .catch((err) => console.log(err))
-    reset()
-    close()
+      .catch((err) => console.log(err));
+    reset();
+    close();
   };
 
   return (
     <>
-      <DialogContent >
-        <Box component={"form"} onSubmit={handleSubmit(addNewPost)} >
+      <DialogContent>
+        <Box component={"form"} onSubmit={handleSubmit(addNewPost)}>
           <Controller
             name="image"
             control={control}
@@ -90,7 +90,9 @@ function NewPostForm({ create, close }) {
           <Controller
             name="text"
             control={control}
-            rules={{ required: "Обязательное поле" }}
+            rules={{
+              required: "Обязательное поле"
+            }}
             render={({ field: { onChange, value } }) => (
               <TextField
                 label="Опишите что произошло"
@@ -101,6 +103,7 @@ function NewPostForm({ create, close }) {
                 minRows={4}
                 value={value}
                 onChange={(e) => onChange(e)}
+                error={!!errors.text?.message}
               />
             )}
           />
@@ -108,7 +111,9 @@ function NewPostForm({ create, close }) {
           <Controller
             name="tags"
             control={control}
-            rules={{ required: "Обязательное поле" }}
+            rules={{
+              required: "Обязательное поле"
+            }}
             render={({ field: { onChange, value } }) => (
               <TextField
                 label="Ключевые слова"
@@ -117,6 +122,7 @@ function NewPostForm({ create, close }) {
                 fullWidth
                 value={value}
                 onChange={(e) => onChange(e)}
+                error={!!errors.tags?.message}
                 helperText="Введите слова через запятую"
               />
             )}
