@@ -4,7 +4,6 @@ const onResponse = (res) => {
 
 class Api {
   constructor({ baseUrl, token }) {
-
     this._token = `Bearer ${token}`;
 
     this._headers = {
@@ -53,6 +52,13 @@ class Api {
     }).then(onResponse);
   }
 
+  delPost(postId) {
+    return fetch(`${this._baseUrl}/posts/${postId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(onResponse);
+  }
+
   createComment(postId, comment) {
     return fetch(`${this._baseUrl}/posts/comments/${postId}`, {
       method: "POST",
@@ -60,11 +66,11 @@ class Api {
       body: JSON.stringify(comment),
     }).then(onResponse);
   }
-  
+
   delComment(postId, commentId) {
     return fetch(`${this._baseUrl}/posts/comments/${postId}/${commentId}`, {
       method: "DELETE",
-      headers: this._headers
+      headers: this._headers,
     }).then(onResponse);
   }
 

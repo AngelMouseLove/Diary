@@ -32,7 +32,13 @@ function Main() {
 
   const createPost = (newPost) => {
     setPosts([newPost, ...posts])
-    
+  }
+
+  const delPost = (post) => {
+    setPosts(posts.filter(p => p._id !== post._id))
+    api.delPost(post._id)
+    .then((postData) => {console.log(postData)})
+    .catch(err => console.log(err))
   }
 
   return (
@@ -41,7 +47,7 @@ function Main() {
       <Grid container spacing={4} className={s.gridContainer}>
         {posts.map((post) => (
           <Grid key={post.title} item xs={12} sm={6} md={4}>
-            <BasicCard {...post} />
+            <BasicCard {...post} post={post} delPost={delPost} />
           </Grid>
         ))}
       </Grid>

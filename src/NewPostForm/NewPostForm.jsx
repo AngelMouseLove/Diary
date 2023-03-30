@@ -108,6 +108,7 @@ function NewPostForm({ create, close }) {
           <Controller
             name="tags"
             control={control}
+            rules={{ required: "Обязательное поле" }}
             render={({ field: { onChange, value } }) => (
               <TextField
                 label="Ключевые слова"
