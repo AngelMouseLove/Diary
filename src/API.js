@@ -81,16 +81,15 @@ class Api {
   //     ).then(onResponce)
   // }
 
-  // changeLikeProductStatus(productID, like) {
-  //     // Обычная реализация: 2 разных метода для удаления и постановки лайка.
-  //     return fetch(`${this._baseUrl}/products/likes/${productID}`, {
-  //         method: like ? "PUT" : "DELETE",
-  //         headers: {
-  //             authorization: this._token,
-  //             "Content-Type": "application/json",
-  //         },
-  //     }).then(onResponce);
-  // }
+  changePostLike(postId, isLike) {
+    return fetch(`${this._baseUrl}/posts/likes/${postId}`, {
+      method: !isLike ? "PUT" : "DELETE",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+    }).then(onResponse);
+  }
 }
 
 const config = {

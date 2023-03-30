@@ -24,6 +24,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
+import s from "../Card/style.module.css";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -46,7 +47,7 @@ const cropText = function (text) {
   return text;
 };
 
-export default function BasicCard({ _id, title, image, text, delPost, post }) {
+export default function BasicCard({ _id, title, image, text, delPost, post, isLiked, onLike }) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -55,6 +56,11 @@ export default function BasicCard({ _id, title, image, text, delPost, post }) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleLike = () => {
+    onLike();
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -70,7 +76,7 @@ export default function BasicCard({ _id, title, image, text, delPost, post }) {
             // </IconButton>
           }
           title={moment(title, DATE_PATTERN).format("Do MMMM YYYY, dddd")}
-          // subheader="September 14, 2016"
+        // subheader="September 14, 2016"
         />
         <Link to={`/posts/${_id}`}>
           {/* Если нужно будет добавить картинку, то сделать условный оператор imageExist && <CardMedia ... */}
@@ -83,11 +89,8 @@ export default function BasicCard({ _id, title, image, text, delPost, post }) {
         </Link>
       </CardActionArea>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
+        <IconButton aria-label="add to favorites" onClick={handleLike}>
+          <FavoriteIcon className={isLiked ? s.liked : s.notLiked} />
         </IconButton>
         <IconButton>
           <DeleteIcon onClick={handleOpen} />
@@ -109,12 +112,12 @@ export default function BasicCard({ _id, title, image, text, delPost, post }) {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button 
-            onClick={() => {
-              delPost(post)
-              handleClose()
+            <Button
+              onClick={() => {
+                delPost(post)
+                handleClose()
               }}>
-            Удалить
+              Удалить
             </Button>
             <Button onClick={handleClose} autoFocus>
               Отмена
