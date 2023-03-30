@@ -48,8 +48,15 @@ function Main() {
   const handleCardLike = (postId, isLike) => {
     api.changePostLike(postId, isLike)
       .then((post) => {
-        setPosts([...posts.filter((post) => post._id != postId), addIsLikedToPost(post, currentUser._id)].sort(sortCards))
+        setPosts([...posts.filter((post) => post._id !== postId), addIsLikedToPost(post, currentUser._id)].sort(sortCards))
       })
+  }
+
+  const delPost = (post) => {
+    setPosts(posts.filter(p => p._id !== post._id))
+    api.delPost(post._id)
+      .then((postData) => { console.log(postData) })
+      .catch(err => console.log(err))
   }
 
   return (
@@ -58,7 +65,7 @@ function Main() {
       <Grid container spacing={4} className={s.gridContainer}>
         {posts.map((post) => (
           <Grid key={post.title} item xs={12} sm={6} md={4}>
-            <BasicCard {...post} onLike={() => handleCardLike(post._id, post.isLiked)} />
+            <BasicCard {...post} post={post} delPost={delPost} onLike={() => handleCardLike(post._id, post.isLiked)} />
           </Grid>
         ))}
       </Grid>

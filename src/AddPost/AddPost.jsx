@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import { Button } from "@mui/material"
-import { Modal } from "@mui/material";
-import NewPostForm from '../NewPostForm/NewPostForm';
+import React, { useState } from "react";
+import { Button } from "@mui/material";
+import { Dialog } from "@mui/material";
+import NewPostForm from "../NewPostForm/NewPostForm";
 
-function AddPost({create}) {
+function AddPost({ create }) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -13,21 +13,21 @@ function AddPost({create}) {
     setOpen(false);
   };
 
-
   return (
     <>
       <Button variant="contained" onClick={handleOpen}>
         Сделать запись
       </Button>
-      <Modal
+      <Dialog
         open={open}
         onClose={handleClose}
-        sx={{
-          overflowY: "scroll",
-        }}
+
+        fullWidth={true}
+        maxWidth="sm"
+        scroll="body"
       >
-        <NewPostForm create={create} ref />
-      </Modal>
+        <NewPostForm create={create} close={handleClose} />
+      </Dialog>
     </>
   );
 }

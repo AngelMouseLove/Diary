@@ -4,7 +4,6 @@ const onResponse = (res) => {
 
 class Api {
   constructor({ baseUrl, token }) {
-
     this._token = `Bearer ${token}`;
 
     this._headers = {
@@ -35,6 +34,12 @@ class Api {
     );
   }
 
+  getUserById(userId) {
+    return fetch(`https://api.react-learning.ru/users/${userId}`, {
+      headers: this._headers,
+    }).then(onResponse);
+  }
+
   getPosts() {
     return fetch(`${this._baseUrl}/posts`, this._requestInit).then(onResponse);
   }
@@ -44,6 +49,28 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(post),
+    }).then(onResponse);
+  }
+
+  delPost(postId) {
+    return fetch(`${this._baseUrl}/posts/${postId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(onResponse);
+  }
+
+  createComment(postId, comment) {
+    return fetch(`${this._baseUrl}/posts/comments/${postId}`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify(comment),
+    }).then(onResponse);
+  }
+
+  delComment(postId, commentId) {
+    return fetch(`${this._baseUrl}/posts/comments/${postId}/${commentId}`, {
+      method: "DELETE",
+      headers: this._headers,
     }).then(onResponse);
   }
 
