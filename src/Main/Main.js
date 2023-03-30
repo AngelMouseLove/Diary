@@ -48,7 +48,7 @@ function Main() {
   const handleCardLike = (postId, isLike) => {
     api.changePostLike(postId, isLike)
       .then((post) => {
-        setPosts([...posts.filter((post) => post._id != postId), addIsLikedToPost(post, currentUser._id)].sort(sortCards))
+        setPosts([...posts.filter((post) => post._id !== postId), addIsLikedToPost(post, currentUser._id)].sort(sortCards))
       })
   }
 
