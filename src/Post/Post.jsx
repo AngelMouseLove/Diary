@@ -10,6 +10,7 @@ import { DATE_PATTERN } from "../constants";
 import CommentList from "../CommentList/CommentList";
 
 export const Post = ({ image, title, text, author, comments }) => {
+  
   const navigate = useNavigate();
 
   return (
@@ -50,7 +51,7 @@ export const Post = ({ image, title, text, author, comments }) => {
               <p>{text}</p>
             </div>
             <Box>
-              <CommentList commentList={comments} author={author} />
+              <CommentList commentList={comments} />
             </Box>
           </div>
         </div>

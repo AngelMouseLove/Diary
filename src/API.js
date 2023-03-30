@@ -35,6 +35,12 @@ class Api {
     );
   }
 
+  getUserById(userId) {
+    return fetch(`https://api.react-learning.ru/users/${userId}`, {
+      headers: this._headers,
+    }).then(onResponse);
+  }
+
   getPosts() {
     return fetch(`${this._baseUrl}/posts`, this._requestInit).then(onResponse);
   }
@@ -47,11 +53,14 @@ class Api {
     }).then(onResponse);
   }
 
-  getUserById(userId) {
-    return fetch(`https://api.react-learning.ru/users/${userId}`, {
+  createComment(postId, comment) {
+    return fetch(`${this._baseUrl}/posts/comments/${postId}`, {
+      method: "POST",
       headers: this._headers,
+      body: JSON.stringify(comment),
     }).then(onResponse);
   }
+  
 
   // search(searchQuery) {
   //     return fetch(

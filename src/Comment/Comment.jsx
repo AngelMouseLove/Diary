@@ -5,8 +5,7 @@ import s from "./Comment.module.css";
 
 function Comment({ author, text, created_at }) {
   const [authorComment, setAuthorComment] = useState({});
-  const [date, setDate] =useState(created_at)
-  
+
   useEffect(() => {
     api
       .getUserById(author)
@@ -17,7 +16,7 @@ function Comment({ author, text, created_at }) {
   return (
     <Box>
       <hr></hr>
-      <Box sx={{display: "flex", gap: 1, alignItems: "center", m: 1}}>
+      <Box sx={{ display: "flex", gap: 1, alignItems: "center", m: 1 }}>
         <img
           src={authorComment.avatar}
           alt="author-avatar"
@@ -28,7 +27,16 @@ function Comment({ author, text, created_at }) {
           <Box component={"h5"}>{authorComment.about}</Box>
         </Box>
       </Box>
-      <Box component={"span"}>{new Date(created_at).toLocaleDateString('ru-RU', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</Box>
+      <Box component={"b"} sx={{ display: "block", mb: 1 }}>
+        {new Date(created_at).toLocaleDateString("ru-RU", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric"
+        })}
+      </Box>
       <Box component={"p"}>{text}</Box>
     </Box>
   );
