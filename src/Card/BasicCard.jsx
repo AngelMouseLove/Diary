@@ -11,7 +11,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 import { CardActionArea, Dialog } from "@mui/material";
@@ -19,12 +18,14 @@ import moment from "moment";
 import "moment/locale/ru";
 import { MAX_CARD_BODY_LENGTH, DATE_PATTERN } from "../constants";
 import { Link } from "react-router-dom";
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogActions from '@mui/material/DialogActions';
-import Button from '@mui/material/Button';
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import EditIcon from "@mui/icons-material/Edit";
 import s from "../Card/style.module.css";
+import SetPostContentForm from "./../SetPostContentForm/SetPostContentForm";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -47,14 +48,31 @@ const cropText = function (text) {
   return text;
 };
 
-export default function BasicCard({ _id, title, image, text, delPost, post, isLiked, onLike }) {
-  const [open, setOpen] = useState(false);
+export default function BasicCard({
+  _id,
+  title,
+  image,
+  text,
+  delPost,
+  post,
+  isLiked,
+  onLike,
+}) {
+  const [openModalDel, setOpenModalDel] = useState(false);
+  const [openModalEdit, setOpenModalEdit] = useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleOpenModalDel = () => {
+    setOpenModalDel(true);
   };
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseModalDel = () => {
+    setOpenModalDel(false);
+  };
+
+  const handleOpenModalEdit = () => {
+    setOpenModalEdit(true);
+  };
+  const handleCloseModalEdit = () => {
+    setOpenModalEdit(false);
   };
 
   const handleLike = () => {
@@ -76,7 +94,7 @@ export default function BasicCard({ _id, title, image, text, delPost, post, isLi
             // </IconButton>
           }
           title={moment(title, DATE_PATTERN).format("Do MMMM YYYY, dddd")}
-        // subheader="September 14, 2016"
+          // subheader="September 14, 2016"
         />
         <Link to={`/posts/${_id}`}>
           {/* Если нужно будет добавить картинку, то сделать условный оператор imageExist && <CardMedia ... */}
@@ -93,11 +111,25 @@ export default function BasicCard({ _id, title, image, text, delPost, post, isLi
           <FavoriteIcon className={isLiked ? s.liked : s.notLiked} />
         </IconButton>
         <IconButton>
-          <DeleteIcon onClick={handleOpen} />
+          <EditIcon
+            onClick={handleOpenModalEdit}
+          />
         </IconButton>
         <Dialog
-          open={open}
-          onClose={handleClose}
+          open={openModalEdit}
+          onClose={handleCloseModalEdit}
+          fullWidth={true}
+          maxWidth="sm"
+          scroll="body"
+        >
+          <SetPostContentForm post={post} _id={_id} close={handleCloseModalEdit}/>
+        </Dialog>
+        <IconButton>
+          <DeleteIcon onClick={handleOpenModalDel} />
+        </IconButton>
+        <Dialog
+          open={openModalDel}
+          onClose={handleCloseModalDel}
           fullWidth={true}
           maxWidth="sm"
           aria-labelledby="alert-dialog-title"
@@ -114,12 +146,13 @@ export default function BasicCard({ _id, title, image, text, delPost, post, isLi
           <DialogActions>
             <Button
               onClick={() => {
-                delPost(post)
-                handleClose()
-              }}>
+                delPost(post);
+                handleCloseModalDel();
+              }}
+            >
               Удалить
             </Button>
-            <Button onClick={handleClose} autoFocus>
+            <Button onClick={handleCloseModalDel} autoFocus>
               Отмена
             </Button>
           </DialogActions>
