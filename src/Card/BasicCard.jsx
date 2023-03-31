@@ -54,6 +54,7 @@ export default function BasicCard({
   image,
   text,
   delPost,
+  createPost,
   post,
   isLiked,
   onLike,
@@ -111,9 +112,7 @@ export default function BasicCard({
           <FavoriteIcon className={isLiked ? s.liked : s.notLiked} />
         </IconButton>
         <IconButton>
-          <EditIcon
-            onClick={handleOpenModalEdit}
-          />
+          <EditIcon onClick={handleOpenModalEdit} />
         </IconButton>
         <Dialog
           open={openModalEdit}
@@ -122,7 +121,13 @@ export default function BasicCard({
           maxWidth="sm"
           scroll="body"
         >
-          <SetPostContentForm post={post} _id={_id} close={handleCloseModalEdit}/>
+          <SetPostContentForm
+            post={post}
+            _id={_id}
+            close={handleCloseModalEdit}
+            delPost={delPost}
+            createPost={createPost}
+          />
         </Dialog>
         <IconButton>
           <DeleteIcon onClick={handleOpenModalDel} />

@@ -7,8 +7,9 @@ import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import { titleValidation } from "../validation";
 import { urlValidation } from "../validation";
+import { create } from "@mui/material/styles/createTransitions";
 
-function SetPostContentForm({close, post, _id}) {
+function SetPostContentForm({close, post, _id, createPost}) {
   const {
     handleSubmit,
     formState: { errors },
@@ -26,15 +27,15 @@ function SetPostContentForm({close, post, _id}) {
 
   
   
-  const setPost = () => {
+  const setPost = (post) => {
     const newPostContent = { ...post, tags: post.tags.split(", ") };
     api
       .setPost(_id, newPostContent)
       .then((postData) => {
-        // create(postData);
+        console.log(postData)
       })
       .catch((err) => console.log(err));
-    // close();
+    close();
   };
 
   return (
