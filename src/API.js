@@ -70,6 +70,14 @@ class Api {
     }).then(onResponse);
   }
 
+  setPost(postId, data) {
+    return fetch(`${this._baseUrl}/posts/${postId}`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify(data)
+    }).then(onResponse);
+  }
+
   delPost(postId) {
     return fetch(`${this._baseUrl}/posts/${postId}`, {
       method: "DELETE",
