@@ -34,6 +34,24 @@ class Api {
     );
   }
 
+  setUserInfo(data) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify(data),
+    })
+    .then(onResponse);
+  }
+
+  setUserAvatar(url) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify(url),
+    })
+    .then(onResponse);
+  }
+
   getUserById(userId) {
     return fetch(`https://api.react-learning.ru/users/${userId}`, {
       headers: this._headers,
