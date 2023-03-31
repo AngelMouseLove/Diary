@@ -10,6 +10,8 @@
 
 .container {
   max-block-size: 1800px;
+  display: flex;
+  justify-content: space-between;
   
 }
 

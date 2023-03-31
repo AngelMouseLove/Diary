@@ -3,13 +3,14 @@ import s from "../Main/style.module.css";
 import api from "../API";
 import BasicCard from "../Card/BasicCard";
 import { Grid } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import moment from "moment/moment";
 import { DATE_PATTERN } from "../constants";
 import AddPost from "../AddPost/AddPost";
+import { UserContext } from "../context/UserContext";
 
 function Main() {
-  const [currentUser, setCurrentUser] = useState({});
+  const {currentUser, setCurrentUser} = useContext(UserContext)
   const [posts, setPosts] = useState([]);
 
   const sortCards = (a, b) => {
