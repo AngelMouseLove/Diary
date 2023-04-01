@@ -14,6 +14,7 @@ import Logo from "../Logo/Logo";
 // import Menu from "../Menu/Menu";
 import SearchBar from "../SearchBar/SearchBar";
 import UserInfo from "../UserInfo/UserInfo"
+import { useNavigate } from "react-router-dom";
 
 const darkTheme = createTheme({
   palette: {
@@ -25,11 +26,16 @@ function App() {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [currentUser, setCurrentUser] = useState({});
+  const navigate = useNavigate();
 
   const handleSearch = (term) => {
+    navigate("/")
     setSearchTerm(term);
   }
 
+  const handleLogoClick = () => {
+    navigate("/")
+  }
 
   return (
     <UserContext.Provider
@@ -41,7 +47,7 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Header>
-        <Logo />
+        <Logo onClick={handleLogoClick} />
         {/* <Menu /> пока скрыла потому что конфликтует с серч баром, возможно стоит вообще убрать меню, т.к не нужно */}
         <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
         <UserInfo />
