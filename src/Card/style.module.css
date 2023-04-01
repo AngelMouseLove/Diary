@@ -1,0 +1,7 @@
+.liked {
+    fill: red !important;
+}
+
+.notLiked {
+    fill: white !important;
+}
