@@ -9,6 +9,7 @@ import { DATE_PATTERN } from "../../constants";
 import AddPost from "../../AddPost/AddPost";
 // import useApi from "../../useApi";
 import { UserContext } from "../../context/UserContext";
+import { addIsLikedToPost } from "../../likeHelper";
 
 
 function PostsPage(props) {
@@ -22,15 +23,6 @@ function PostsPage(props) {
   const sortCards = (a, b) => {
     return moment(b.title, DATE_PATTERN).toDate() - moment(a.title, DATE_PATTERN).toDate();
   }
-
-  const addIsLikedToPost = (post, userId) => {
-    if (post.likes.includes(userId)) {
-      return { ...post, isLiked: true };
-    } else {
-      return { ...post, isLiked: false };
-    }
-  };
-
 
   useEffect(() => {
     Promise.all([api.getPosts(), api.getUserInfo()]).then(

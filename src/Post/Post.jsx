@@ -1,17 +1,20 @@
 import React from "react";
 import s from "./Post.module.css";
-import IconButton from "@mui/material/IconButton";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/ru";
 import { DATE_PATTERN } from "../constants";
 import CommentList from "../CommentList/CommentList";
+import LikeButton from "../LikeButton/LikeButton";
 
-export const Post = ({ image, title, text, author, comments }) => {
+export const Post = ({ image, title, text, author, comments, isLiked, onLike }) => {
   
   const navigate = useNavigate();
+
+  const handleLike = () => {
+    onLike();
+  }
 
   return (
     <div>
@@ -39,9 +42,7 @@ export const Post = ({ image, title, text, author, comments }) => {
                 <h4>{author.about}</h4>
               </div>
             </div>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
+            <LikeButton isLiked={isLiked} onClick={handleLike} />
             <div className={s.postContent}>
               <p>
                 <b>

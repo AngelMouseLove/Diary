@@ -10,7 +10,6 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 import { CardActionArea, Dialog } from "@mui/material";
@@ -24,8 +23,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
-import s from "../Card/style.module.css";
 import SetPostContentForm from "./../SetPostContentForm/SetPostContentForm";
+import LikeButton from "../LikeButton/LikeButton";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -108,9 +107,7 @@ export default function BasicCard({
         </Link>
       </CardActionArea>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={handleLike}>
-          <FavoriteIcon className={isLiked ? s.liked : s.notLiked} />
-        </IconButton>
+        <LikeButton isLiked={isLiked} onClick={handleLike}/>
         <IconButton>
           <EditIcon onClick={handleOpenModalEdit} />
         </IconButton>
