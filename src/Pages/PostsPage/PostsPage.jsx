@@ -7,7 +7,7 @@ import { useState, useEffect, useContext } from "react";
 import moment from "moment/moment";
 import { DATE_PATTERN } from "../../constants";
 import AddPost from "../../AddPost/AddPost";
-import useApi from "../../useApi";
+// import useApi from "../../useApi";
 import { UserContext } from "../../context/UserContext";
 
 
@@ -44,7 +44,7 @@ function PostsPage(props) {
         );
       }
     );
-  }, [posts]);
+  }, []);
 
   const createPost = (newPost) => {
     setPosts([newPost, ...posts])
