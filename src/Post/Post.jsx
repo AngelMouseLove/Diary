@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import s from "./Post.module.css";
 import { Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +7,12 @@ import "moment/locale/ru";
 import { DATE_PATTERN } from "../constants";
 import CommentList from "../CommentList/CommentList";
 import LikeButton from "../LikeButton/LikeButton";
+import { checkIsLiked } from "../utils";
+import { UserContext } from "../context/UserContext";
 
-export const Post = ({ image, title, text, author, comments, isLiked, onLike }) => {
+export const Post = ({ image, title, text, author, likes, comments, onLike }) => {
+
+  const {currentUser} = useContext(UserContext);
   
   const navigate = useNavigate();
 
@@ -42,7 +46,7 @@ export const Post = ({ image, title, text, author, comments, isLiked, onLike }) 
                 <h4>{author.about}</h4>
               </div>
             </div>
-            <LikeButton isLiked={isLiked} onClick={handleLike} />
+            <LikeButton isLiked={checkIsLiked(likes, currentUser._id)} onClick={handleLike} />
             <div className={s.postContent}>
               <p>
                 <b>

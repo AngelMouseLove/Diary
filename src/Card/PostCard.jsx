@@ -1,4 +1,3 @@
-import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -11,7 +10,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { CardActionArea, Dialog } from "@mui/material";
 import moment from "moment";
 import "moment/locale/ru";
@@ -23,8 +22,10 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
-import SetPostContentForm from "./../SetPostContentForm/SetPostContentForm";
+import SetPostContentForm from "../SetPostContentForm/SetPostContentForm";
 import LikeButton from "../LikeButton/LikeButton";
+import { checkIsLiked } from "../utils";
+import { UserContext } from "../context/UserContext";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -47,7 +48,7 @@ const cropText = function (text) {
   return text;
 };
 
-export default function BasicCard({
+function PostCard({
   _id,
   title,
   image,
@@ -55,11 +56,12 @@ export default function BasicCard({
   delPost,
   createPost,
   post,
-  isLiked,
+  likes,
   onLike,
 }) {
   const [openModalDel, setOpenModalDel] = useState(false);
   const [openModalEdit, setOpenModalEdit] = useState(false);
+  const {currentUser} = useContext(UserContext);
 
   const handleOpenModalDel = () => {
     setOpenModalDel(true);
@@ -107,7 +109,7 @@ export default function BasicCard({
         </Link>
       </CardActionArea>
       <CardActions disableSpacing>
-        <LikeButton isLiked={isLiked} onClick={handleLike}/>
+        <LikeButton isLiked={checkIsLiked(likes, currentUser._id)} onClick={handleLike}/>
         <IconButton>
           <EditIcon onClick={handleOpenModalEdit} />
         </IconButton>
@@ -163,3 +165,5 @@ export default function BasicCard({
     </Card>
   );
 }
+
+export default PostCard;

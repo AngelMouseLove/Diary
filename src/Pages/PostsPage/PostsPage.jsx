@@ -1,7 +1,7 @@
 import s from "./style.module.css";
 // import articles from '../data/articls.json';
 import api from "../../API";
-import BasicCard from "../../Card/BasicCard";
+import BasicCard from "../../Card/PostCard";
 import { Grid } from "@mui/material";
 import { useState, useEffect, useContext } from "react";
 import moment from "moment/moment";
@@ -9,12 +9,12 @@ import { DATE_PATTERN } from "../../constants";
 import AddPost from "../../AddPost/AddPost";
 // import useApi from "../../useApi";
 import { UserContext } from "../../context/UserContext";
-import { addIsLikedToPost } from "../../likeHelper";
+import { checkIsLiked } from "../../utils";
 
 
 function PostsPage(props) {
   const [posts, setPosts] = useState([]);
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   // const [loading, data, error] = useApi();
 
@@ -25,13 +25,11 @@ function PostsPage(props) {
   }
 
   useEffect(() => {
-    Promise.all([api.getPosts(), api.getUserInfo()]).then(
-      ([postsData, userData]) => {
-        setCurrentUser(userData);
+    api.getPosts()
+      .then((postsData) => {
         setPosts(
           postsData
-            .filter((post) => post.author._id === userData._id)
-            .map((post) => addIsLikedToPost(post, userData._id))
+            .filter((post) => post.author._id === currentUser._id)
             .sort(sortCards)
         );
       }
@@ -42,14 +40,12 @@ function PostsPage(props) {
     setPosts([newPost, ...posts])
   }
 
-
-  // TODO: Рефактор обновления лайка, потому что выглядит с сортировками и добавлениями параметра isLiked 
   const handleCardLike = (postId, isLike) => {
     api.changePostLike(postId, isLike).then((post) => {
       setPosts(
         [
           ...posts.filter((post) => post._id !== postId),
-          addIsLikedToPost(post, currentUser._id),
+          post
         ].sort(sortCards)
       );
     });
@@ -76,7 +72,7 @@ function PostsPage(props) {
               post={post}
               delPost={delPost}
               createPost={createPost}
-              onLike={() => handleCardLike(post._id, post.isLiked)}
+              onLike={() => handleCardLike(post._id, checkIsLiked(post.likes, currentUser._id))}
             />
           </Grid>
         ))}

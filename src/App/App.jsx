@@ -9,12 +9,13 @@ import PostsPage from "../Pages/PostsPage/PostsPage";
 import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 
 import { UserContext } from "../context/UserContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Logo from "../Logo/Logo";
 // import Menu from "../Menu/Menu";
 import SearchBar from "../SearchBar/SearchBar";
 import UserInfo from "../UserInfo/UserInfo"
 import { useNavigate } from "react-router-dom";
+import api from "../API";
 
 const darkTheme = createTheme({
   palette: {
@@ -27,6 +28,11 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    api.getUserInfo()
+      .then((userData) => setCurrentUser(userData));
+  }, []);
 
   const handleSearch = (term) => {
     navigate("/")
