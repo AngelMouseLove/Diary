@@ -3,11 +3,9 @@ const onResponse = (res) => {
 };
 
 class Api {
-  constructor({ baseUrl, token }) {
-    this._token = `Bearer ${token}`;
+  constructor({ baseUrl }) {
 
     this._headers = {
-      authorization: this._token,
       "Content-Type": "application/json",
     };
 
@@ -16,6 +14,29 @@ class Api {
     };
 
     this._baseUrl = baseUrl;
+  }
+
+  setToken(token) {
+    this._headers = {
+      "content-type": "application/json",
+      Authorization: token,
+    };
+  }
+
+  signIn(email, password) {
+    return fetch(`${this._baseUrl}/signin`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({ email, password }),
+    }).then(onResponse);
+  }
+
+  signUp(email, group, password) {
+    return fetch(`${this._baseUrl}/signup`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({ email, group, password }),
+    }).then(onResponse);
   }
 
   // getProductList() {

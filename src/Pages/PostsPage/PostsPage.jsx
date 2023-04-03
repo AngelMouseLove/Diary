@@ -11,42 +11,41 @@ import AddPost from "../../AddPost/AddPost";
 import { UserContext } from "../../context/UserContext";
 import { checkIsLiked } from "../../utils";
 
-
 function PostsPage(props) {
   const [posts, setPosts] = useState([]);
   const { currentUser } = useContext(UserContext);
 
   // const [loading, data, error] = useApi();
 
-  const filteredPosts = posts.filter(post => post.text.toLowerCase().includes(props.searchTerm.toLowerCase()));
+  const filteredPosts = posts.filter((post) =>
+    post.text.toLowerCase().includes(props.searchTerm.toLowerCase())
+  );
 
   const sortCards = (a, b) => {
-    return moment(b.title, DATE_PATTERN).toDate() - moment(a.title, DATE_PATTERN).toDate();
-  }
+    return (
+      moment(b.title, DATE_PATTERN).toDate() -
+      moment(a.title, DATE_PATTERN).toDate()
+    );
+  };
 
   useEffect(() => {
-    api.getPosts()
-      .then((postsData) => {
-        setPosts(
-          postsData
-            .filter((post) => post.author._id === currentUser._id)
-            .sort(sortCards)
-        );
-      }
-    );
+    api.getPosts().then((postsData) => {
+      setPosts(
+        postsData
+          .filter((post) => post.author._id === currentUser._id)
+          .sort(sortCards)
+      );
+    });
   }, []);
 
   const createPost = (newPost) => {
-    setPosts([newPost, ...posts])
-  }
+    setPosts([newPost, ...posts]);
+  };
 
   const handleCardLike = (postId, isLike) => {
     api.changePostLike(postId, isLike).then((post) => {
       setPosts(
-        [
-          ...posts.filter((post) => post._id !== postId),
-          post
-        ].sort(sortCards)
+        [...posts.filter((post) => post._id !== postId), post].sort(sortCards)
       );
     });
   };
@@ -72,7 +71,12 @@ function PostsPage(props) {
               post={post}
               delPost={delPost}
               createPost={createPost}
-              onLike={() => handleCardLike(post._id, checkIsLiked(post.likes, currentUser._id))}
+              onLike={() =>
+                handleCardLike(
+                  post._id,
+                  checkIsLiked(post.likes, currentUser._id)
+                )
+              }
             />
           </Grid>
         ))}
