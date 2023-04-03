@@ -65,7 +65,7 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Header>
-        <Box sx={{display: "flex", maxWidth: "60vw"}}>
+        <Box sx={{display: "flex", width: "60vw", justifyContent: "space-between"}}>
           <Logo onClick={handleLogoClick} />
           {/* <Menu /> пока скрыла потому что конфликтует с серч баром, возможно стоит вообще убрать меню, т.к не нужно */}
           <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
