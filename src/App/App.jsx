@@ -17,6 +17,7 @@ import UserInfo from "../UserInfo/UserInfo";
 import { useNavigate } from "react-router-dom";
 import api from "../API";
 import IndexPage from "../Pages/IndexPage/IndexPage";
+import { Box } from "@mui/material";
 
 const darkTheme = createTheme({
   palette: {
@@ -28,11 +29,8 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState(null);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    api.getUserInfo().then((userData) => setCurrentUser(userData));
-  }, []);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const tokenFromLS = localStorage.getItem("token");
@@ -41,6 +39,10 @@ function App() {
       setToken(tokenFromLS);
     }
   }, []);
+  
+  useEffect(() => {
+    api.getUserInfo().then((userData) => setCurrentUser(userData)).catch((err) => console.log(err));
+  }, [token]);
 
   const handleSearch = (term) => {
     navigate("/");
@@ -63,9 +65,11 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Header>
+        <Box sx={{display: "flex", maxWidth: "60vw"}}>
           <Logo onClick={handleLogoClick} />
           {/* <Menu /> пока скрыла потому что конфликтует с серч баром, возможно стоит вообще убрать меню, т.к не нужно */}
           <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
+        </Box>
           {token && <UserInfo />}
         </Header>
         <main className={s.container}>
