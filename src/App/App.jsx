@@ -16,7 +16,6 @@ import SearchBar from "../SearchBar/SearchBar";
 import UserInfo from "../UserInfo/UserInfo";
 import { useNavigate } from "react-router-dom";
 import api from "../API";
-import IndexPage from "../Pages/IndexPage/IndexPage";
 import { Box } from "@mui/material";
 
 const darkTheme = createTheme({
@@ -74,7 +73,7 @@ function App() {
         </Header>
         <main className={s.container}>
           <Routes>
-            <Route index element={<IndexPage searchTerm={searchTerm} />} />
+            <Route index element={token ? <PostsPage searchTerm={searchTerm} /> : <MainPage />} />
             <Route path="/posts/:postId" element={token && <PostPage />} />
             <Route path="/signup" element={<MainPage />} />
             <Route path="/login" element={<MainPage />} />

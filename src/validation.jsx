@@ -27,3 +27,13 @@ export const commenTextValidation = {
     return "Введите не менее 6 символов"
   }
 }
+
+export const emailValidation = {
+  required: "Введите правильный e-mail адрес",
+  validate: (value) => {
+    if (value.match(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu)) {
+      return true
+    }
+    return "Введите правильный e-mail адрес"
+  }
+}

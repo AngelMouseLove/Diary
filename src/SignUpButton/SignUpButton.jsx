@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 function SignUpButton(props) {
   return (
     <>
-      <Button>Продолжить вести дневник</Button>
+      <Button variant="contained">Завести дневник</Button>
     </>
   );
 }

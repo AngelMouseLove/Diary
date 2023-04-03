@@ -13,7 +13,7 @@ import { checkIsLiked } from "../../utils";
 
 function PostsPage(props) {
   const [posts, setPosts] = useState([]);
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, token } = useContext(UserContext);
 
   // const [loading, data, error] = useApi();
 
@@ -36,7 +36,7 @@ function PostsPage(props) {
           .sort(sortCards)
       );
     });
-  }, []);
+  }, [currentUser._id]);
 
   const createPost = (newPost) => {
     setPosts([newPost, ...posts]);
@@ -54,9 +54,7 @@ function PostsPage(props) {
     setPosts(posts.filter((p) => p._id !== post._id));
     api
       .delPost(post._id)
-      .then((postData) => {
-        console.log(postData);
-      })
+
       .catch((err) => console.log(err));
   };
 

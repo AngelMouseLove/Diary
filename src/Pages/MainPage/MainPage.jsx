@@ -5,10 +5,12 @@ import SignUpButton from "../../SignUpButton/SignUpButton";
 
 function MainPage() {
   return (
-    <Box>
-      <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+    <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "60vh" }}>
+      <Box
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
         <Box component={"h1"}>Добро пожаловать в Diary</Box>
-        <Box component={"p"} sx={{textAlign: "center", mb: 2}}>
+        <Box component={"p"} sx={{ textAlign: "center", mb: 2 }}>
           Ведение дневника&nbsp;&mdash; хороший способ сохранить в&nbsp;памяти
           свои воспоминания и&nbsp;впечатления. Это позволяет вам мониторить
           сво&euml; прошлое и&nbsp;размышлять о&nbsp;н&euml;м, а&nbsp;также
@@ -19,9 +21,9 @@ function MainPage() {
           возможность задокументировать изменения в&nbsp;своей жизни.
         </Box>
       </Box>
-      <Box sx={{display: "flex", justifyContent: "center", gap: "40px"}}>
-        <SignInButton/>
-        <SignUpButton/>
+      <Box sx={{ display: "flex", justifyContent: "center", gap: "40px" }}>
+        <SignUpButton />
+        <SignInButton />
       </Box>
     </Box>
   );
