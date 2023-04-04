@@ -24,7 +24,7 @@ export const Post = ({ image, title, text, author, likes, comments, onLike }) =>
     <div>
       <div>
         <div>
-          <Button variant="contained" onClick={() => navigate(-1)}>
+          <Button variant="contained" onClick={() => navigate(-1)} sx={{mb: 2}}>
             Назад
           </Button>
         </div>

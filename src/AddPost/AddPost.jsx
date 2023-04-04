@@ -21,7 +21,6 @@ function AddPost({ create }) {
       <Dialog
         open={open}
         onClose={handleClose}
-
         fullWidth={true}
         maxWidth="sm"
         scroll="body"
