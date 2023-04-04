@@ -85,7 +85,7 @@ function PostCard({
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+      <CardActionArea >
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -109,16 +109,28 @@ function PostCard({
             </Typography>
           </CardContent>
         </Link>
-        <Box sx={{display: "flex", gap: "20px", pl: 2, pr: 2 }}>
-          {tags.map((tag) => (
-            <Box component="span" sx={{ backgroundColor: "#273f96", color: "#ffffff", padding: "5px", borderRadius: "3px" }}>
+        <Box sx={{ display: "flex", gap: 1, pl: 2, pr: 2, mb: 1 }}>
+          {tags && tags.map((tag) => (
+            <Box
+              key={tag}
+              component="span"
+              sx={{
+                backgroundColor: "#273f96",
+                color: "#ffffff",
+                padding: "5px",
+                borderRadius: "3px",
+              }}
+            >
               {tag}
             </Box>
           ))}
         </Box>
       </CardActionArea>
 
-      <CardActions disableSpacing sx={{display: "flex", justifyContent: "space-between"}}>
+      <CardActions
+        disableSpacing
+        sx={{ display: "flex", justifyContent: "space-between" }}
+      >
         <LikeButton
           isLiked={checkIsLiked(likes, currentUser._id)}
           onClick={handleLike}

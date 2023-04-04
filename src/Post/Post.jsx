@@ -10,21 +10,33 @@ import LikeButton from "../LikeButton/LikeButton";
 import { checkIsLiked } from "../utils";
 import { UserContext } from "../context/UserContext";
 
-export const Post = ({ image, title, text, author, likes, comments, onLike }) => {
+export const Post = ({
+  image,
+  title,
+  text,
+  author,
+  likes,
+  comments,
+  onLike,
+  tags,
+}) => {
+  const { currentUser } = useContext(UserContext);
 
-  const {currentUser} = useContext(UserContext);
-  
   const navigate = useNavigate();
 
   const handleLike = () => {
     onLike();
-  }
+  };
 
   return (
     <div>
       <div>
         <div>
-          <Button variant="contained" onClick={() => navigate(-1)} sx={{mb: 2}}>
+          <Button
+            variant="contained"
+            onClick={() => navigate(-1)}
+            sx={{ mb: 2 }}
+          >
             Назад
           </Button>
         </div>
@@ -46,7 +58,10 @@ export const Post = ({ image, title, text, author, likes, comments, onLike }) =>
                 <h4>{author.about}</h4>
               </div>
             </div>
-            <LikeButton isLiked={checkIsLiked(likes, currentUser._id)} onClick={handleLike} />
+            <LikeButton
+              isLiked={checkIsLiked(likes, currentUser._id)}
+              onClick={handleLike}
+            />
             <div className={s.postContent}>
               <p>
                 <b>
@@ -54,6 +69,21 @@ export const Post = ({ image, title, text, author, likes, comments, onLike }) =>
                 </b>
               </p>
               <p>{text}</p>
+              {tags && tags.map((tag) => (
+                <Box
+                  key={tag}
+                  component="span"
+                  sx={{
+                    backgroundColor: "#273f96",
+                    color: "#ffffff",
+                    padding: "5px",
+                    borderRadius: "3px",
+                    mr: 1,
+                  }}
+                >
+                  {tag}
+                </Box>
+              ))}
             </div>
             <Box>
               <CommentList commentList={comments} />
