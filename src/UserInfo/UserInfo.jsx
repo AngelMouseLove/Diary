@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, Dialog } from "@mui/material";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import SetUserInfoForm from "../SetUserInfoForm/SetUserInfoForm";
+import api from "../API";
 
 function UserInfo() {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -15,6 +16,10 @@ function UserInfo() {
     setOpen(false);
   };
   
+  useEffect(() => { 
+    api.getUserInfo().then((userData) => setCurrentUser(userData)).catch((err) => console.log(err));
+  }, [currentUser]);
+
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <Box>

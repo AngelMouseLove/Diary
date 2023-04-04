@@ -37,10 +37,6 @@ class Api {
     }).then(onResponse);
   }
 
-  // getProductList() {
-  //     return fetch(`${this._baseUrl}/products`, this._requestInit).then(onResponse);
-  // }
-
   getPostById(id) {
     return fetch(`${this._baseUrl}/posts/${id}`, {
       headers: this._headers,

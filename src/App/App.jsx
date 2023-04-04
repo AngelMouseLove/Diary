@@ -39,9 +39,7 @@ function App() {
     }
   }, []);
   
-  useEffect(() => { // не знаю как предотвратить вызов эффекта до логина. Выдает ошибку что не авторизован. Если убрать, то при обновлении страницы слетает авторизация
-    api.getUserInfo().then((userData) => setCurrentUser(userData)).catch((err) => console.log(err));
-  }, [currentUser]);
+
 
   const handleSearch = (term) => {
     navigate("/");
