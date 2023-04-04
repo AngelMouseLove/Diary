@@ -37,8 +37,11 @@
 }
 
 .content {
-  padding: 20px;
   width: 310px;
+}
+
+.postContent {
+  margin-bottom: 16px;
 }
 
 .postContent p {

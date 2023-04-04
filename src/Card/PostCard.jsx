@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
+import Box from "@mui/material/Box";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
@@ -58,10 +59,11 @@ function PostCard({
   post,
   likes,
   onLike,
+  tags,
 }) {
   const [openModalDel, setOpenModalDel] = useState(false);
   const [openModalEdit, setOpenModalEdit] = useState(false);
-  const {currentUser} = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const handleOpenModalDel = () => {
     setOpenModalDel(true);
@@ -83,7 +85,7 @@ function PostCard({
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+      <CardActionArea >
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -107,61 +109,86 @@ function PostCard({
             </Typography>
           </CardContent>
         </Link>
+        <Box sx={{ display: "flex", gap: 1, pl: 2, pr: 2, mb: 1 }}>
+          {tags && tags.map((tag) => (
+            <Box
+              key={tag}
+              component="span"
+              sx={{
+                backgroundColor: "#273f96",
+                color: "#ffffff",
+                padding: "5px",
+                borderRadius: "3px",
+              }}
+            >
+              {tag}
+            </Box>
+          ))}
+        </Box>
       </CardActionArea>
-      <CardActions disableSpacing>
-        <LikeButton isLiked={checkIsLiked(likes, currentUser._id)} onClick={handleLike}/>
+
+      <CardActions
+        disableSpacing
+        sx={{ display: "flex", justifyContent: "space-between" }}
+      >
+        <LikeButton
+          isLiked={checkIsLiked(likes, currentUser._id)}
+          onClick={handleLike}
+        />
         <IconButton>
           <EditIcon onClick={handleOpenModalEdit} />
         </IconButton>
-        <Dialog
-          open={openModalEdit}
-          onClose={handleCloseModalEdit}
-          fullWidth={true}
-          maxWidth="sm"
-          scroll="body"
-        >
-          <SetPostContentForm
-            post={post}
-            _id={_id}
-            close={handleCloseModalEdit}
-            delPost={delPost}
-            createPost={createPost}
-          />
-        </Dialog>
+
         <IconButton>
           <DeleteIcon onClick={handleOpenModalDel} />
         </IconButton>
-        <Dialog
-          open={openModalDel}
-          onClose={handleCloseModalDel}
-          fullWidth={true}
-          maxWidth="sm"
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">
-            Вы уверены что хотите удалить пост?
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Удаленный пост уже нельзя будет восстановить.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={() => {
-                delPost(post);
-                handleCloseModalDel();
-              }}
-            >
-              Удалить
-            </Button>
-            <Button onClick={handleCloseModalDel} autoFocus>
-              Отмена
-            </Button>
-          </DialogActions>
-        </Dialog>
       </CardActions>
+
+      <Dialog
+        open={openModalEdit}
+        onClose={handleCloseModalEdit}
+        fullWidth={true}
+        maxWidth="sm"
+        scroll="body"
+      >
+        <SetPostContentForm
+          post={post}
+          _id={_id}
+          close={handleCloseModalEdit}
+          delPost={delPost}
+          createPost={createPost}
+        />
+      </Dialog>
+      <Dialog
+        open={openModalDel}
+        onClose={handleCloseModalDel}
+        fullWidth={true}
+        maxWidth="sm"
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Вы уверены что хотите удалить пост?
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Удаленный пост уже нельзя будет восстановить.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => {
+              delPost(post);
+              handleCloseModalDel();
+            }}
+          >
+            Удалить
+          </Button>
+          <Button onClick={handleCloseModalDel} autoFocus>
+            Отмена
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Card>
   );
 }
