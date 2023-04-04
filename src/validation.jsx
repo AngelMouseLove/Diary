@@ -37,3 +37,13 @@ export const emailValidation = {
     return "Введите правильный e-mail адрес"
   }
 }
+
+export const passwordValidation = {
+  required: "Пароль должен содержать минимум восемь символов, одну букву латинского алфавита и одну цифру",
+  validate: (value) => {
+    if (value.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)) {
+      return true
+    }
+    return "Пароль должен содержать минимум восемь символов, одну букву латинского алфавита и одну цифру"
+  }
+}

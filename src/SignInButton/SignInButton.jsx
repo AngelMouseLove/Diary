@@ -3,7 +3,7 @@ import { Button, Dialog } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import LoginForm from "../LoginForm/LoginForm";
 
-function SignInButton(props) {
+function SignInButton() {
   const navigate = useNavigate();
   const location = useLocation();
 

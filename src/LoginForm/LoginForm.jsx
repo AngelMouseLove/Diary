@@ -103,11 +103,12 @@ function LoginForm({ close }) {
             <Button variant="contained" type="submit">
               Продолжить вести дневник
             </Button>
-            <Button onClick={close}>Завести новый дневник</Button>
+            <Button onClick={() => navigate("/signup")}>Завести новый дневник</Button>
             <Button onClick={close}>Отмена</Button>
           </DialogActions>
         </Box>
       </DialogContent>
+
       <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth="sm">
         <DialogTitle>Ошибка</DialogTitle>
         <DialogContent>Неправильные почта или пароль</DialogContent>
@@ -117,6 +118,7 @@ function LoginForm({ close }) {
           </Button>
         </DialogActions>
       </Dialog>
+
     </>
   );
 }

@@ -11,10 +11,6 @@ class Api {
       "Content-Type": "application/json",
     };
 
-    // this._requestInit = {
-    //   headers: this._headers,
-    // };
-
     this._baseUrl = baseUrl;
   }
 
