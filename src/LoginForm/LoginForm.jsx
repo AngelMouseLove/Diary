@@ -28,6 +28,11 @@ function LoginForm({ close }) {
 
   const navigate = useNavigate();
 
+  const redirect = () => {
+    close()
+    navigate("/signup")
+  }
+
   const {
     handleSubmit,
     formState: { errors },
@@ -47,12 +52,12 @@ function LoginForm({ close }) {
     api
       .signIn(email, password)
       .then((obj) => {
-          api.setToken(obj.token);
-          setToken(obj.token);
-          localStorage.setItem("token", obj.token);
-          setCurrentUser(obj.data);
-          close();
-          navigate("/");
+        api.setToken(obj.token);
+        setToken(obj.token);
+        localStorage.setItem("token", obj.token);
+        setCurrentUser(obj.data);
+        close();
+        navigate("/");
       })
       .catch(() => handleClickOpen());
   }, []);
@@ -103,7 +108,9 @@ function LoginForm({ close }) {
             <Button variant="contained" type="submit">
               Продолжить вести дневник
             </Button>
-            <Button onClick={() => navigate("/signup")}>Завести новый дневник</Button>
+            <Button onClick={redirect}>
+              Завести новый дневник
+            </Button>
             <Button onClick={close}>Отмена</Button>
           </DialogActions>
         </Box>
@@ -118,7 +125,6 @@ function LoginForm({ close }) {
           </Button>
         </DialogActions>
       </Dialog>
-
     </>
   );
 }

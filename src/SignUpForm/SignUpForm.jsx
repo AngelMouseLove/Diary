@@ -37,6 +37,11 @@ function SignUpForm({ close }) {
 
   const navigate = useNavigate();
 
+  const redirect = () => {
+    close()
+    navigate("/login")
+  }
+
   const {
     handleSubmit,
     formState: { errors },
@@ -129,7 +134,7 @@ function SignUpForm({ close }) {
             <Button variant="contained" type="submit">
               Завести дневник
             </Button>
-            <Button onClick={() => navigate("/login")}>Продолжить вести дневник</Button>
+            <Button onClick={redirect}>Продолжить вести дневник</Button>
             <Button onClick={close}>Отмена</Button>
           </DialogActions>
         </Box>

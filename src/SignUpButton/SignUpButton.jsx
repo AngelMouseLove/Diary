@@ -21,7 +21,7 @@ function SignUpButton() {
 
   const handleClose = useCallback(() => {
     setOpen(false);
-  });
+  }, [setOpen]);
 
   return (
     <>
