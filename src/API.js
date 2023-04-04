@@ -3,8 +3,6 @@ const onResponse = (res) => {
     return res.json();
   }
   throw res;
-  //   return res.json()
-  //   // return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 };
 
 class Api {

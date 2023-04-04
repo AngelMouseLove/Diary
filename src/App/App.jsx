@@ -40,8 +40,8 @@ function App() {
   }, []);
   
   useEffect(() => {
-    api.getUserInfo().then((userData) => setCurrentUser(userData)).catch((err) => console.log("Error" + err));
-  }, [token]);
+    api.getUserInfo().then((userData) => setCurrentUser(userData)).catch((err) => console.log(err));
+  }, [currentUser]);
 
   const handleSearch = (term) => {
     navigate("/");
