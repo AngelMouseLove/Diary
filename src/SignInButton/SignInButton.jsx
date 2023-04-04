@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Dialog } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import LoginForm from "../LoginForm/LoginForm";
@@ -15,13 +15,12 @@ function SignInButton() {
     }
   }, [location, setOpen]);
 
-  const handleClickOpen = useCallback(() => {
+  const handleClickOpen = () => {
     navigate("/login");
     setOpen(true);
-  }, [setOpen]);
+  };
 
-  const handleClose = useCallback(() => {
-    setOpen(false)});
+  const handleClose = () => setOpen(false);
 
   return (
     <>

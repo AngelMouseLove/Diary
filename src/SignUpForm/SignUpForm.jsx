@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import api from "../API";
@@ -55,7 +55,7 @@ function SignUpForm({ close }) {
     },
   });
 
-  const signUp = useCallback((data) => {
+  const signUp = (data) => {
     const { email, group, password } = data;
     api
       .signUp(email, group, password)
@@ -69,7 +69,7 @@ function SignUpForm({ close }) {
           console.log(obj);
         }
       });
-  }, []);
+  };
 
   return (
     <>

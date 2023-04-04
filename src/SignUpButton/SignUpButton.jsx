@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button, Dialog } from "@mui/material";
 import SignUpForm from "../SignUpForm/SignUpForm";
@@ -14,18 +14,20 @@ function SignUpButton() {
     }
   }, [location, setOpen]);
 
-  const handleClickOpen = useCallback(() => {
+  const handleClickOpen = () => {
     navigate("/signup");
     setOpen(true);
-  }, [setOpen]);
+  };
 
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     setOpen(false);
-  }, [setOpen]);
+  };
 
   return (
     <>
-      <Button variant="contained" onClick={handleClickOpen}>Завести дневник</Button>
+      <Button variant="contained" onClick={handleClickOpen}>
+        Завести дневник
+      </Button>
       <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth="sm">
         <SignUpForm close={handleClose} />
       </Dialog>

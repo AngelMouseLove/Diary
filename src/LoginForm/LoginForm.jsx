@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from "react";
+import React, { useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { emailValidation } from "../validation";
 import { UserContext } from "../context/UserContext";
@@ -47,7 +47,7 @@ function LoginForm({ close }) {
 
   const { setToken, setCurrentUser } = useContext(UserContext);
 
-  const signIn = useCallback((data) => {
+  const signIn = (data) => {
     const { email, password } = data;
     api
       .signIn(email, password)
@@ -59,8 +59,13 @@ function LoginForm({ close }) {
         close();
         navigate("/");
       })
-      .catch(() => handleClickOpen());
-  }, []);
+      .catch((err) => {
+        if (err.status === 401) {
+          handleClickOpen()
+        } else
+        console.log(err.message)
+      })
+  };
 
   return (
     <>
