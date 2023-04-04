@@ -40,7 +40,7 @@ function App() {
   }, []);
   
   useEffect(() => {
-    api.getUserInfo().then((userData) => setCurrentUser(userData)).catch((err) => console.log(err));
+    api.getUserInfo().then((userData) => setCurrentUser(userData)).catch((err) => console.log("Error" + err));
   }, [token]);
 
   const handleSearch = (term) => {

@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   DialogContent,
+  Dialog,
   TextField,
   DialogTitle,
   DialogContentText,
@@ -15,7 +16,17 @@ import {
 import { useNavigate } from "react-router-dom";
 
 function LoginForm({ close }) {
-const navigate = useNavigate()
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -33,14 +44,17 @@ const navigate = useNavigate()
 
   const signIn = useCallback((data) => {
     const { email, password } = data;
-    api.signIn(email, password).then((obj) => {
-      api.setToken(obj.token);
-      setToken(obj.token);
-      localStorage.setItem("token", obj.token);
-      setCurrentUser(obj.data);
-      close();
-      navigate("/")
-    });
+    api
+      .signIn(email, password)
+      .then((obj) => {
+          api.setToken(obj.token);
+          setToken(obj.token);
+          localStorage.setItem("token", obj.token);
+          setCurrentUser(obj.data);
+          close();
+          navigate("/");
+      })
+      .catch(() => handleClickOpen());
   }, []);
 
   return (
@@ -94,6 +108,15 @@ const navigate = useNavigate()
           </DialogActions>
         </Box>
       </DialogContent>
+      <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth="sm">
+        <DialogTitle>Ошибка</DialogTitle>
+        <DialogContent>Неправильные почта или пароль</DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} variant="contained">
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
