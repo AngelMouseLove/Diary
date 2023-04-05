@@ -84,7 +84,7 @@ function PostCard({
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
       <CardActionArea >
         <CardHeader
           avatar={

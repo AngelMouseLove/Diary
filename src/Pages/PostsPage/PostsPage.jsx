@@ -63,7 +63,7 @@ function PostsPage(props) {
       <AddPost create={createPost} />
       <Grid container spacing={4} className={s.gridContainer}>
         {filteredPosts.map((post) => (
-          <Grid key={post.title} item xs={12} sm={6} md={4}>
+          <Grid key={post.title} item xs={12} sm={6} md={4} sx={{display: "flex", alignItems: "stretch"}}>
             <BasicCard
               {...post}
               post={post}
