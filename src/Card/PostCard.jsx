@@ -100,11 +100,11 @@ function PostCard({
           title={moment(title, DATE_PATTERN).format("Do MMMM YYYY, dddd")}
           // subheader="September 14, 2016"
         />
-        <Link to={`/posts/${_id}`}>
+        <Link to={`/posts/${_id}`} style={{textDecoration: "none"}}>
           {/* Если нужно будет добавить картинку, то сделать условный оператор imageExist && <CardMedia ... */}
           <CardMedia component="img" height="194" image={image} alt="Sky" />
           <CardContent>
-            <Typography variant="body1" color="text.secondary">
+            <Typography variant="body1" color="text.secondary" >
               {cropText(text)}
             </Typography>
           </CardContent>
