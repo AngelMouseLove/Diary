@@ -24,9 +24,9 @@ function PostPage() {
   }
 
   return (
-    <div>
+    <>
       {post && <Post {...post} onLike={handleLike} />}
-    </div>
+    </>
   );
 }
 

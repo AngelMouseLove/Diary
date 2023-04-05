@@ -84,8 +84,15 @@ function PostCard({
   };
 
   return (
-    <Card sx={{ maxWidth: 345, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-      <CardActionArea >
+    <Card
+      sx={{
+        maxWidth: 345,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      <CardActionArea>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -100,30 +107,31 @@ function PostCard({
           title={moment(title, DATE_PATTERN).format("Do MMMM YYYY, dddd")}
           // subheader="September 14, 2016"
         />
-        <Link to={`/posts/${_id}`} style={{textDecoration: "none"}}>
+        <Link to={`/posts/${_id}`} style={{ textDecoration: "none" }}>
           {/* Если нужно будет добавить картинку, то сделать условный оператор imageExist && <CardMedia ... */}
           <CardMedia component="img" height="194" image={image} alt="Sky" />
           <CardContent>
-            <Typography variant="body1" color="text.secondary" >
+            <Typography variant="body1" color="text.secondary">
               {cropText(text)}
             </Typography>
           </CardContent>
         </Link>
         <Box sx={{ display: "flex", gap: 1, pl: 2, pr: 2, mb: 1 }}>
-          {tags && tags.map((tag) => (
-            <Box
-              key={tag}
-              component="span"
-              sx={{
-                backgroundColor: "#273f96",
-                color: "#ffffff",
-                padding: "5px",
-                borderRadius: "3px",
-              }}
-            >
-              {tag}
-            </Box>
-          ))}
+          {tags &&
+            tags.map((tag) => (
+              <Box
+                key={tag}
+                component="span"
+                sx={{
+                  backgroundColor: "#273f96",
+                  color: "#ffffff",
+                  padding: "5px",
+                  borderRadius: "3px",
+                }}
+              >
+                {tag}
+              </Box>
+            ))}
         </Box>
       </CardActionArea>
 
