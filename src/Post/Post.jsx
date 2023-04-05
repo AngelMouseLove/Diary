@@ -29,7 +29,7 @@ export const Post = ({
   };
 
   return (
-    <div>
+    <>
       <div>
         <div>
           <Button
@@ -91,6 +91,6 @@ export const Post = ({
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
