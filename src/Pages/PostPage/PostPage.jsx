@@ -17,7 +17,7 @@ function PostPage() {
       .getPostById(postId)
       .then((post) => setPost(post))
       .catch((err) => console.log(err));
-  }, [postId, currentUser]);
+  }, [postId]);
 
   const handleLike = () => {
     api.changePostLike(post._id, checkIsLiked(post.likes, currentUser._id))

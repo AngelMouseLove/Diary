@@ -18,7 +18,7 @@ function UserInfo() {
   
   useEffect(() => { 
     api.getUserInfo().then((userData) => setCurrentUser(userData)).catch((err) => console.log(err));
-  }, [currentUser]);
+  }, []);
 
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
