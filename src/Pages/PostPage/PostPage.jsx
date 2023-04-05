@@ -5,6 +5,7 @@ import api from "../../API";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { checkIsLiked } from "../../utils";
+import Spinner from "../../Spinner/Spinner";
 
 function PostPage() {
   let { postId } = useParams();
@@ -25,7 +26,11 @@ function PostPage() {
 
   return (
     <>
-      {post && <Post {...post} onLike={handleLike} />}
+    {
+      post
+      ? <Post {...post} onLike={handleLike} />
+      : <Spinner />
+    }
     </>
   );
 }

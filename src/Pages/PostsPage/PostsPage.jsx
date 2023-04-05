@@ -10,12 +10,11 @@ import AddPost from "../../AddPost/AddPost";
 // import useApi from "../../useApi";
 import { UserContext } from "../../context/UserContext";
 import { checkIsLiked } from "../../utils";
+import Spinner from "../../Spinner/Spinner";
 
 function PostsPage(props) {
   const [posts, setPosts] = useState([]);
   const { currentUser } = useContext(UserContext);
-
-  // const [loading, data, error] = useApi();
 
   const filteredPosts = posts.filter((post) =>
     post.text.toLowerCase().includes(props.searchTerm.toLowerCase())
@@ -60,25 +59,31 @@ function PostsPage(props) {
 
   return (
     <>
-      <AddPost create={createPost} />
-      <Grid container spacing={4} className={s.gridContainer}>
-        {filteredPosts.map((post) => (
-          <Grid key={post.title} item xs={12} sm={6} md={4} sx={{display: "flex", alignItems: "stretch"}}>
-            <BasicCard
-              {...post}
-              post={post}
-              delPost={delPost}
-              createPost={createPost}
-              onLike={() =>
-                handleCardLike(
-                  post._id,
-                  checkIsLiked(post.likes, currentUser._id)
-                )
-              }
-            />
-          </Grid>
-        ))}
-      </Grid>
+    {
+      filteredPosts.length  
+        ? <>
+            <AddPost create={createPost} />
+            <Grid container spacing={4} className={s.gridContainer}>
+            {filteredPosts.map((post) => (
+              <Grid key={post.title} item xs={12} sm={6} md={4} sx={{display: "flex", alignItems: "stretch"}}>
+                <BasicCard
+                  {...post}
+                  post={post}
+                  delPost={delPost}
+                  createPost={createPost}
+                  onLike={() =>
+                    handleCardLike(
+                      post._id,
+                      checkIsLiked(post.likes, currentUser._id)
+                    )
+                  }
+                />
+              </Grid>
+              ))}
+            </Grid> 
+          </>
+        : <Spinner />
+    }
     </>
   );
 }
