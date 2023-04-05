@@ -38,8 +38,6 @@ function App() {
       setToken(tokenFromLS);
     }
   }, []);
-  
-
 
   const handleSearch = (term) => {
     navigate("/");
@@ -62,16 +60,27 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Header>
-        <Box sx={{display: "flex", width: "60vw", justifyContent: "space-between"}}>
-          <Logo onClick={handleLogoClick} />
-          {/* <Menu /> пока скрыла потому что конфликтует с серч баром, возможно стоит вообще убрать меню, т.к не нужно */}
-          <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
-        </Box>
+          <Box
+            sx={{
+              display: "flex",
+              width: "60vw",
+              justifyContent: "space-between",
+            }}
+          >
+            <Logo onClick={handleLogoClick} />
+            {/* <Menu /> пока скрыла потому что конфликтует с серч баром, возможно стоит вообще убрать меню, т.к не нужно */}
+            <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
+          </Box>
           {token && <UserInfo />}
         </Header>
         <main className={s.container}>
           <Routes>
-            <Route index element={token ? <PostsPage searchTerm={searchTerm} /> : <MainPage />} />
+            <Route
+              index
+              element={
+                token ? <PostsPage searchTerm={searchTerm} /> : <MainPage />
+              }
+            />
             <Route path="/posts/:postId" element={token && <PostPage />} />
             <Route path="/signup" element={<MainPage />} />
             <Route path="/login" element={<MainPage />} />
