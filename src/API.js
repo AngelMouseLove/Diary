@@ -37,6 +37,22 @@ class Api {
     }).then(onResponse);
   }
 
+  resetPassword(email){
+    return fetch(`https://api.react-learning.ru/password-reset`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json",},
+      body: JSON.stringify(email)
+    }).then(onResponse);
+  }
+
+  setPassword(token, password){
+    return fetch(`https://api.react-learning.ru/password-reset/${token}`, {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json",},
+      body: JSON.stringify(password)
+    }).then(onResponse);
+  }
+
   getPostById(id) {
     return fetch(`${this._baseUrl}/posts/${id}`, {
       headers: this._headers,
