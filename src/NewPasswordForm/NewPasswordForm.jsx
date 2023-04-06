@@ -35,12 +35,9 @@ function NewPasswordForm({ handleCloseNewPasswordForm }) {
     const { token, password } = data;
     api
       .setPassword(token, {password: password})
-      .then((obj) => {
-      // setToken(obj.token);
-      // localStorage.setItem("token", obj.token);
-      handleCloseNewPasswordForm();
-      handleOpenNewPasswordSuccess();
-    }).catch((err) => console.log(err));
+      .catch((err) => console.log(err));
+    handleCloseNewPasswordForm();
+    handleOpenNewPasswordSuccess();
   };
 
   return (
