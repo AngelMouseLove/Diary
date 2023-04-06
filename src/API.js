@@ -38,9 +38,9 @@ class Api {
   }
 
   resetPassword(email){
-    return fetch(`https://api.react-learning.ru/password-reset`, {
+    return fetch(`https://api.react-learning.ru/forgot-password`, {
       method: "POST",
-      headers: {"Content-Type": "application/json",},
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(email)
     }).then(onResponse);
   }

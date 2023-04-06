@@ -32,11 +32,11 @@ function SetPassword() {
   };
 
   const resetPassword = () => {
-    // api.resetPassword(currentUser.email).catch((err) => console.log(err))
+    api.resetPassword({email: currentUser.email}).catch((err) => console.log(err))
     handleCloseResetPassword();
     handleOpenNewPasswordForm();
   };
-
+  
   return (
     <>
       <Button sx={{ mt: "15px" }} onClick={handleOpenResetPassword}>

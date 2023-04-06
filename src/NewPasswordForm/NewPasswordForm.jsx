@@ -19,7 +19,7 @@ function NewPasswordForm({ handleCloseNewPasswordForm }) {
     control,
   } = useForm({
     mode: "onChange",
-    defaultValues: { password: "", token: "" },
+    defaultValues: { token: "", password: "" },
   });
 
   const [openNewPasswordSuccess, setOpenNewPasswordSuccess] = useState(false);
@@ -31,12 +31,16 @@ function NewPasswordForm({ handleCloseNewPasswordForm }) {
     setOpenNewPasswordSuccess(false);
   };
 
-  const saveNewPassword = () => {
-
-    // api.setPassword()
-
-    handleCloseNewPasswordForm();
-    handleOpenNewPasswordSuccess();
+  const saveNewPassword = (data) => {
+    const { token, password } = data;
+    api
+      .setPassword(token, {password: password})
+      .then((obj) => {
+      // setToken(obj.token);
+      // localStorage.setItem("token", obj.token);
+      handleCloseNewPasswordForm();
+      handleOpenNewPasswordSuccess();
+    }).catch((err) => console.log(err));
   };
 
   return (
@@ -75,7 +79,7 @@ function NewPasswordForm({ handleCloseNewPasswordForm }) {
         )}
       />
       <DialogActions>
-        <Button type="submit" variant="contained" sx={{ mt: "15px" }} >
+        <Button type="submit" variant="contained" sx={{ mt: "15px" }}>
           Сохранить пароль
         </Button>
       </DialogActions>
