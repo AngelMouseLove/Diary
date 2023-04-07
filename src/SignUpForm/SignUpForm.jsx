@@ -50,7 +50,7 @@ function SignUpForm({ close }) {
     mode: "onChange",
     defaultValues: {
       email: "",
-      group: "",
+      group: "group-10",
       password: "",
     },
   });
@@ -105,6 +105,7 @@ function SignUpForm({ close }) {
                 size="medium"
                 margin="normal"
                 fullWidth
+                disabled
                 value={value}
                 onChange={(e) => onChange(e)}
                 error={!!errors.group?.message}
