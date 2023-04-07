@@ -9,7 +9,6 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState, useContext } from "react";
 import { CardActionArea, Dialog } from "@mui/material";
 import moment from "moment";
@@ -27,6 +26,8 @@ import SetPostContentForm from "../SetPostContentForm/SetPostContentForm";
 import LikeButton from "../LikeButton/LikeButton";
 import { checkIsLiked } from "../utils";
 import { UserContext } from "../context/UserContext";
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import NotesIcon from '@mui/icons-material/Notes';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -96,14 +97,10 @@ function PostCard({
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+              <NotesIcon/>
             </Avatar>
           }
-          action={
-            // <IconButton aria-label="settings">
-            <MoreVertIcon />
-            // </IconButton>
-          }
+         
           title={moment(title, DATE_PATTERN).format("Do MMMM YYYY, dddd")}
           // subheader="September 14, 2016"
         />
