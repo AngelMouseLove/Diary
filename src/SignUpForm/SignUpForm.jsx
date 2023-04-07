@@ -38,9 +38,9 @@ function SignUpForm({ close }) {
   const navigate = useNavigate();
 
   const redirect = () => {
-    close()
-    navigate("/login")
-  }
+    close();
+    navigate("/login");
+  };
 
   const {
     handleSubmit,
@@ -50,7 +50,7 @@ function SignUpForm({ close }) {
     mode: "onChange",
     defaultValues: {
       email: "",
-      group: "",
+      group: "group-10",
       password: "",
     },
   });
@@ -105,6 +105,7 @@ function SignUpForm({ close }) {
                 size="medium"
                 margin="normal"
                 fullWidth
+                disabled
                 value={value}
                 onChange={(e) => onChange(e)}
                 error={!!errors.group?.message}
@@ -140,7 +141,12 @@ function SignUpForm({ close }) {
         </Box>
       </DialogContent>
 
-      <Dialog open={openError} onClose={handleClickCloseError} fullWidth={true} maxWidth="sm">
+      <Dialog
+        open={openError}
+        onClose={handleClickCloseError}
+        fullWidth={true}
+        maxWidth="sm"
+      >
         <DialogTitle>Ошибка</DialogTitle>
         <DialogContent>Автор с таким email уже существует</DialogContent>
         <DialogActions>
@@ -150,7 +156,12 @@ function SignUpForm({ close }) {
         </DialogActions>
       </Dialog>
 
-      <Dialog open={openSuccess} onClose={handleClickCloseSuccess} fullWidth={true} maxWidth="sm">
+      <Dialog
+        open={openSuccess}
+        onClose={handleClickCloseSuccess}
+        fullWidth={true}
+        maxWidth="sm"
+      >
         <DialogTitle>Регистрация пройдена</DialogTitle>
         <DialogContent>
           Вы завели дневник. Выполните вход и приступайте к записям

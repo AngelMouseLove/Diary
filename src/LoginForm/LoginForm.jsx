@@ -14,6 +14,7 @@ import {
   DialogActions,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import SetPassword from "../SetPassword/SetPassword";
 
 function LoginForm({ close }) {
   const [open, setOpen] = React.useState(false);
@@ -95,6 +96,7 @@ function LoginForm({ close }) {
           <Controller
             name="password"
             control={control}
+            rules={{required:"Обязательное поле"}}
             render={({ field: { onChange, value } }) => (
               <TextField
                 label="Пароль"
@@ -113,6 +115,7 @@ function LoginForm({ close }) {
             <Button variant="contained" type="submit">
               Продолжить вести дневник
             </Button>
+            <SetPassword/>
             <Button onClick={redirect}>
               Завести новый дневник
             </Button>
