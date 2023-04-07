@@ -4,15 +4,12 @@ import { Controller } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { passwordValidation } from "../validation";
 import api from "../API";
-import { useNavigate } from "react-router";
-import { UserContext } from "../context/UserContext";
+
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 function NewPasswordForm({ handleCloseNewPasswordForm }) {
-  const navigate = useNavigate();
-  const { setToken } = useContext(UserContext);
   const {
     handleSubmit,
     formState: { errors },
@@ -34,52 +31,59 @@ function NewPasswordForm({ handleCloseNewPasswordForm }) {
   const saveNewPassword = (data) => {
     const { token, password } = data;
     api
-      .setPassword(token, {password: password})
+      .setPassword(token, { password: password })
       .catch((err) => console.log(err));
-    handleCloseNewPasswordForm();
     handleOpenNewPasswordSuccess();
   };
 
   return (
-    <Box component={"form"} onSubmit={handleSubmit(saveNewPassword)}>
-      <Controller
-        name="token"
-        control={control}
-        rules={"Обязательное поле"}
-        render={({ field: { onChange, value } }) => (
-          <TextField
-            label="Секретное слово"
-            size="medium"
-            margin="normal"
-            fullWidth
-            value={value}
-            onChange={(e) => onChange(e)}
-          />
-        )}
-      />
-      <Controller
-        name="password"
-        control={control}
-        rules={passwordValidation}
-        render={({ field: { onChange, value } }) => (
-          <TextField
-            label="Новый пароль"
-            type="password"
-            size="medium"
-            margin="normal"
-            fullWidth
-            value={value}
-            onChange={(e) => onChange(e)}
-            error={!!errors.password?.message}
-            helperText={errors.password?.message}
-          />
-        )}
-      />
-      <DialogActions>
-        <Button type="submit" variant="contained" sx={{ mt: "15px" }}>
-          Сохранить пароль
-        </Button>
-      </DialogActions>
+    <>
+      <Box component={"form"} onSubmit={handleSubmit(saveNewPassword)}>
+        <Controller
+          name="token"
+          control={control}
+          rules={{ required: "Обязательное поле" }}
+          render={({ field: { onChange, value } }) => (
+            <TextField
+              label="Секретное слово"
+              size="medium"
+              margin="normal"
+              fullWidth
+              value={value}
+              onChange={(e) => onChange(e)}
+              error={!!errors.token?.message}
+              helperText={errors.token?.message}
+            />
+          )}
+        />
+        <Controller
+          name="password"
+          control={control}
+          rules={passwordValidation}
+          render={({ field: { onChange, value } }) => (
+            <TextField
+              label="Новый пароль"
+              type="password"
+              size="medium"
+              margin="normal"
+              fullWidth
+              value={value}
+              onChange={(e) => onChange(e)}
+              error={!!errors.password?.message}
+              helperText={errors.password?.message}
+            />
+          )}
+        />
+        <DialogActions>
+          <Button
+            onClick={handleSubmit(saveNewPassword)}
+            variant="contained"
+            sx={{ mt: "15px" }}
+          >
+            Сохранить пароль
+          </Button>
+        </DialogActions>
+      </Box>
 
       <Dialog
         open={openNewPasswordSuccess}
@@ -92,10 +96,17 @@ function NewPasswordForm({ handleCloseNewPasswordForm }) {
           <DialogContentText>Вы успешно изменили пароль</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseNewPasswordSuccess}>Ok</Button>
+          <Button
+            onClick={() => {
+              handleCloseNewPasswordSuccess();
+              handleCloseNewPasswordForm();
+            }}
+          >
+            Ok
+          </Button>
         </DialogActions>
       </Dialog>
-    </Box>
+    </>
   );
 }
 

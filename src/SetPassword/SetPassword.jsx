@@ -14,9 +14,9 @@ import { useForm, Controller } from "react-hook-form";
 import { emailValidation } from "../validation";
 
 function SetPassword() {
-  const [openResetPassword, setOpenResetPassword] = useState(false);
-
   const { currentUser, token } = useContext(UserContext);
+
+  const [openResetPassword, setOpenResetPassword] = useState(false);
 
   const handleOpenResetPassword = () => {
     setOpenResetPassword(true);
@@ -26,6 +26,13 @@ function SetPassword() {
   };
 
   const [openNewPasswordForm, setOpenNewPasswordForm] = useState(false);
+
+  const handleOpenNewPasswordForm = () => {
+    setOpenNewPasswordForm(true);
+  };
+  const handleCloseNewPasswordForm = () => {
+    setOpenNewPasswordForm(false);
+  };
 
   const {
     handleSubmit,
@@ -38,13 +45,6 @@ function SetPassword() {
       email: "",
     },
   });
-
-  const handleOpenNewPasswordForm = () => {
-    setOpenNewPasswordForm(true);
-  };
-  const handleCloseNewPasswordForm = () => {
-    setOpenNewPasswordForm(false);
-  };
 
   const resetPassword = (data) => {
     const { email } = data;
@@ -61,22 +61,21 @@ function SetPassword() {
       <Button sx={{ mt: "15px" }} onClick={handleOpenResetPassword}>
         Сбросить пароль
       </Button>
-      
-        <Dialog
-          open={openResetPassword}
-          onClose={handleCloseResetPassword}
-          fullWidth={true}
-          maxWidth="sm"
-        >
-          <DialogTitle>Сброс пароля</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              При нажатии кнопки сброса пароля Вам на&nbsp;почту придет
-              секретное слово. Введите секретное слово, а&nbsp;затем введите
-              новый пароль.
-            </DialogContentText>
-            {!token && (
-              <Box component={"form"} onSubmit={handleSubmit(resetPassword)}>
+
+      <Dialog
+        open={openResetPassword}
+        onClose={handleCloseResetPassword}
+        fullWidth={true}
+        maxWidth="sm"
+      >
+        <DialogTitle>Сброс пароля</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            При нажатии кнопки сброса пароля Вам на&nbsp;почту придет секретное
+            слово. Введите секретное слово, а&nbsp;затем введите новый пароль.
+          </DialogContentText>
+          {!token && (
+            <Box component={"form"} onSubmit={handleSubmit(resetPassword)}>
               <Controller
                 name="email"
                 control={control}
@@ -93,29 +92,33 @@ function SetPassword() {
                     helperText={errors.email?.message}
                   />
                 )}
-              /></Box>
-            )}
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleSubmit(resetPassword)}>Сброс пароля</Button>
-            <Button onClick={handleCloseResetPassword} autoFocus>
-              Отмена
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <Dialog
-          open={openNewPasswordForm}
-          onClose={handleCloseNewPasswordForm}
-          fullWidth={true}
-          maxWidth="sm"
-        >
-          <DialogTitle>Новый пароль</DialogTitle>
-          <DialogContent>
-            <NewPasswordForm
-              handleCloseNewPasswordForm={handleCloseNewPasswordForm}
-            />
-          </DialogContent>
-        </Dialog>
+              />
+            </Box>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button type="submit" onClick={handleSubmit(resetPassword)}>
+            Сброс пароля
+          </Button>
+          <Button onClick={handleCloseResetPassword} autoFocus>
+            Отмена
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={openNewPasswordForm}
+        onClose={handleCloseNewPasswordForm}
+        fullWidth={true}
+        maxWidth="sm"
+      >
+        <DialogTitle>Новый пароль</DialogTitle>
+        <DialogContent>
+          <NewPasswordForm
+            handleCloseNewPasswordForm={handleCloseNewPasswordForm}
+          />
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

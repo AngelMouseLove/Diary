@@ -10,6 +10,7 @@ import { UserContext } from "../context/UserContext";
 import SetPassword from "../SetPassword/SetPassword";
 
 function SetUserInfoForm({ close }) {
+  
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const {
@@ -28,6 +29,7 @@ function SetUserInfoForm({ close }) {
   });
 
   const newUserInfo = (data) => {
+    
     const newData = { name: data.name, about: data.about };
     const newAvatar = { avatar: data.avatar };
 

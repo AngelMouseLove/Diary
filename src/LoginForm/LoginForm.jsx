@@ -96,6 +96,7 @@ function LoginForm({ close }) {
           <Controller
             name="password"
             control={control}
+            rules={{required:"Обязательное поле"}}
             render={({ field: { onChange, value } }) => (
               <TextField
                 label="Пароль"
