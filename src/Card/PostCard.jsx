@@ -132,12 +132,12 @@ function PostCard({
             onClick={handleLike}
           /> {(likes.length || likes.length !== 0) && likes.length}
         </div>
-        <IconButton>
-          <EditIcon onClick={handleOpenModalEdit} />
+        <IconButton onClick={handleOpenModalEdit}>
+          <EditIcon />
         </IconButton>
 
-        <IconButton>
-          <DeleteIcon onClick={handleOpenModalDel} />
+        <IconButton onClick={handleOpenModalDel}>
+          <DeleteIcon />
         </IconButton>
       </CardActions>
 
