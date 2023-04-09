@@ -9,7 +9,7 @@ function SignUpButton() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (location.pathname == "/signup") {
+    if (location.pathname === "/signup") {
       setOpen(true);
     }
   }, [location, setOpen]);

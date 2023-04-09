@@ -10,7 +10,7 @@ function SignInButton() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (location.pathname == "/login") {
+    if (location.pathname === "/login") {
       setOpen(true);
     }
   }, [location, setOpen]);

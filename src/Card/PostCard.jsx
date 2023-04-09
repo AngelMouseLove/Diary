@@ -29,17 +29,6 @@ import { UserContext } from "../context/UserContext";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import NotesIcon from '@mui/icons-material/Notes';
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
 const cropText = function (text) {
   if (text.length > MAX_CARD_BODY_LENGTH) {
     return (
@@ -88,6 +77,7 @@ function PostCard({
     <Card
       sx={{
         maxWidth: 345,
+        minWidth: 345,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",

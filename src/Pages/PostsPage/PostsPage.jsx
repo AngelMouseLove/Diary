@@ -1,7 +1,7 @@
 import s from "./style.module.css";
 // import articles from '../data/articls.json';
 import api from "../../API";
-import BasicCard from "../../Card/PostCard";
+import PostCard from "../../Card/PostCard";
 import { Grid } from "@mui/material";
 import { useState, useEffect, useContext } from "react";
 import moment from "moment/moment";
@@ -66,7 +66,7 @@ function PostsPage(props) {
             <Grid container spacing={4} className={s.gridContainer}>
             {filteredPosts.map((post) => (
               <Grid key={post.title} item xs={12} sm={6} md={4} sx={{display: "flex", alignItems: "stretch"}}>
-                <BasicCard
+                <PostCard
                   {...post}
                   post={post}
                   delPost={delPost}
