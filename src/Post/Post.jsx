@@ -58,10 +58,12 @@ export const Post = ({
                 <h4>{author.about}</h4>
               </div>
             </div>
+            <div>
             <LikeButton
               isLiked={checkIsLiked(likes, currentUser._id)}
               onClick={handleLike}
-            />
+            /> {(likes.length || likes.length !== 0) && likes.length}
+            </div>
             <div className={s.postContent}>
               <p>
                 <b>

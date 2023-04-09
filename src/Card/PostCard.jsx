@@ -136,10 +136,12 @@ function PostCard({
         disableSpacing
         sx={{ display: "flex", justifyContent: "space-between" }}
       >
-        <LikeButton
-          isLiked={checkIsLiked(likes, currentUser._id)}
-          onClick={handleLike}
-        />
+        <div>
+          <LikeButton
+            isLiked={checkIsLiked(likes, currentUser._id)}
+            onClick={handleLike}
+          /> {(likes.length || likes.length !== 0) && likes.length}
+        </div>
         <IconButton>
           <EditIcon onClick={handleOpenModalEdit} />
         </IconButton>
