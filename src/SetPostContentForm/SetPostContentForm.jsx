@@ -15,6 +15,7 @@ function SetPostContentForm({ close, post, _id }) {
     formState: { errors },
     control,
     getValues,
+    watch,
   } = useForm({
     mode: "onChange",
     defaultValues: {
@@ -64,7 +65,7 @@ function SetPostContentForm({ close, post, _id }) {
           {getValues("image", false) ? (
             <Box
               component="img"
-              src={getValues("image")}
+              src={watch("image")}
               alt="post-img"
               sx={{
                 width: "30vw",
