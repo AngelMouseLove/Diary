@@ -76,7 +76,6 @@ function PostsPage(props) {
                   {...post}
                   post={post}
                   delPost={delPost}
-                  createPost={createPost}
                   onLike={() =>
                     handleCardLike(
                       post._id,

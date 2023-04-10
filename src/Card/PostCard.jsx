@@ -45,7 +45,6 @@ function PostCard({
   image,
   text,
   delPost,
-  createPost,
   post,
   likes,
   onLike,
@@ -162,8 +161,6 @@ function PostCard({
           post={post}
           _id={_id}
           close={handleCloseModalEdit}
-          delPost={delPost}
-          createPost={createPost}
         />
       </Dialog>
       <Dialog

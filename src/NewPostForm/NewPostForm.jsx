@@ -77,6 +77,7 @@ function NewPostForm({ create, close }) {
           <Controller
             name="title"
             control={control}
+            rules={{required: "Обязательное поле"}}
             render={({ field: { onChange, value } }) => (
               <TextField
                 type="date"
