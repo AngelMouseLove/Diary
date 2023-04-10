@@ -59,13 +59,19 @@ function PostsPage(props) {
 
   return (
     <>
-    {
-      filteredPosts.length  
-        ? <>
-            <AddPost create={createPost} />
-            <Grid container spacing={4} className={s.gridContainer}>
+      <AddPost create={createPost} />
+      {!!filteredPosts.length ? (
+        <>
+          <Grid container spacing={4} className={s.gridContainer}>
             {filteredPosts.map((post) => (
-              <Grid key={post.title} item xs={12} sm={6} md={4} sx={{display: "flex", alignItems: "stretch"}}>
+              <Grid
+                key={post.title}
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", alignItems: "stretch" }}
+              >
                 <PostCard
                   {...post}
                   post={post}
@@ -79,11 +85,12 @@ function PostsPage(props) {
                   }
                 />
               </Grid>
-              ))}
-            </Grid> 
-          </>
-        : <Spinner />
-    }
+            ))}
+          </Grid>
+        </>
+      ) : (
+        <Spinner />
+      )}
     </>
   );
 }
