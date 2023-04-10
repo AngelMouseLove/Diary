@@ -38,7 +38,7 @@ function PostsPage(props) {
   }, [currentUser]);
 
   const createPost = (newPost) => {
-    setPosts([newPost, ...posts]);
+    setPosts([newPost, ...posts].sort(sortCards));
   };
 
   const handleCardLike = (postId, isLike) => {
