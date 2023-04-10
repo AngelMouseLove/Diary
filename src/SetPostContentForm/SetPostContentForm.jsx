@@ -18,7 +18,7 @@ function SetPostContentForm({ close, post, _id }) {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      title: post.title,
+      title: moment(post.title, DATE_PATTERN).format("YYYY-MM-DD"),
       text: post.text,
       image: post.image,
       tags: post.tags.join(", "),
