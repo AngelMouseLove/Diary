@@ -26,8 +26,8 @@ import SetPostContentForm from "../SetPostContentForm/SetPostContentForm";
 import LikeButton from "../LikeButton/LikeButton";
 import { checkIsLiked } from "../utils";
 import { UserContext } from "../context/UserContext";
-import EditNoteIcon from '@mui/icons-material/EditNote';
-import NotesIcon from '@mui/icons-material/Notes';
+import MessageIcon from "@mui/icons-material/Message";
+import NotesIcon from "@mui/icons-material/Notes";
 
 const cropText = function (text) {
   if (text.length > MAX_CARD_BODY_LENGTH) {
@@ -50,6 +50,7 @@ function PostCard({
   likes,
   onLike,
   tags,
+  comments,
 }) {
   const [openModalDel, setOpenModalDel] = useState(false);
   const [openModalEdit, setOpenModalEdit] = useState(false);
@@ -87,10 +88,9 @@ function PostCard({
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              <NotesIcon/>
+              <NotesIcon />
             </Avatar>
           }
-         
           title={moment(title, DATE_PATTERN).format("Do MMMM YYYY, dddd")}
           // subheader="September 14, 2016"
         />
@@ -126,12 +126,22 @@ function PostCard({
         disableSpacing
         sx={{ display: "flex", justifyContent: "space-between" }}
       >
-        <div>
+        <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
           <LikeButton
             isLiked={checkIsLiked(likes, currentUser._id)}
             onClick={handleLike}
-          /> {(likes.length || likes.length !== 0) && likes.length}
-        </div>
+          />{" "}
+          <span>{(likes.length || likes.length !== 0) && likes.length}</span>
+          {(comments.length || comments.length !== 0) && (
+            <>
+              <MessageIcon />
+              <span>
+                {(comments.length || comments.length !== 0) && comments.length}
+              </span>
+            </>
+          )}
+        </Box>
+
         <IconButton onClick={handleOpenModalEdit}>
           <EditIcon />
         </IconButton>
