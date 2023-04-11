@@ -1,19 +1,17 @@
 import s from "./style.module.css";
-// import articles from '../data/articls.json';
 import api from "../../API";
 import PostCard from "../../Card/PostCard";
 import { Grid } from "@mui/material";
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import moment from "moment/moment";
 import { DATE_PATTERN } from "../../constants";
 import AddPost from "../../AddPost/AddPost";
-// import useApi from "../../useApi";
 import { UserContext } from "../../context/UserContext";
 import { checkIsLiked } from "../../utils";
 import Spinner from "../../Spinner/Spinner";
 
 function PostsPage(props) {
-  const [posts, setPosts] = useState([]);
+  const { posts, setPosts } = useContext(UserContext);
   const { currentUser } = useContext(UserContext);
 
   const filteredPosts = posts.filter((post) =>
@@ -76,6 +74,7 @@ function PostsPage(props) {
                   {...post}
                   post={post}
                   delPost={delPost}
+                  sortcards={sortCards}
                   onLike={() =>
                     handleCardLike(
                       post._id,

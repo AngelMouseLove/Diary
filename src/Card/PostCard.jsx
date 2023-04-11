@@ -50,6 +50,7 @@ function PostCard({
   onLike,
   tags,
   comments,
+  sortcards,
 }) {
   const [openModalDel, setOpenModalDel] = useState(false);
   const [openModalEdit, setOpenModalEdit] = useState(false);
@@ -159,6 +160,7 @@ function PostCard({
       >
         <SetPostContentForm
           post={post}
+          sortcards={sortcards}
           _id={_id}
           close={handleCloseModalEdit}
         />
