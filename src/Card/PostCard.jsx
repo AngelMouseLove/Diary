@@ -141,7 +141,7 @@ function PostCard({
             </>
           )}
         </Box>
-
+      <div>
         <IconButton onClick={handleOpenModalEdit}>
           <EditIcon />
         </IconButton>
@@ -149,7 +149,9 @@ function PostCard({
         <IconButton onClick={handleOpenModalDel}>
           <DeleteIcon />
         </IconButton>
+     </div>
       </CardActions>
+      
 
       <Dialog
         open={openModalEdit}
