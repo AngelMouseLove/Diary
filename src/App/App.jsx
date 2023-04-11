@@ -28,6 +28,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   const navigate = useNavigate();
 
@@ -55,6 +56,8 @@ function App() {
         setCurrentUser,
         token,
         setToken,
+        posts,
+        setPosts,
       }}
     >
       <ThemeProvider theme={darkTheme}>

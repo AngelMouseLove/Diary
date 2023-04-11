@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, TextField, Button } from "@mui/material";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
@@ -8,8 +8,11 @@ import { Controller } from "react-hook-form";
 import { urlValidation } from "../validation";
 import moment from "moment";
 import { DATE_PATTERN } from "../constants";
+import { UserContext } from "../context/UserContext";
 
-function SetPostContentForm({ close, post, _id }) {
+function SetPostContentForm({ close, post, _id, sortcards }) {
+  const { posts, setPosts } = useContext(UserContext);
+
   const {
     handleSubmit,
     formState: { errors },
@@ -35,7 +38,11 @@ function SetPostContentForm({ close, post, _id }) {
     api
       .setPost(_id, newPostContent)
       .then((newPostData) => {
-        console.log(newPostData);
+        setPosts(
+          [...posts.filter((post) => post._id !== _id), newPostData].sort(
+            sortcards
+          )
+        );
       })
       .catch((err) => console.log(err));
     close();
@@ -91,7 +98,7 @@ function SetPostContentForm({ close, post, _id }) {
           <Controller
             name="title"
             control={control}
-            rules={{required: "Обязательное поле"}}
+            rules={{ required: "Обязательное поле" }}
             render={({ field: { onChange, value } }) => (
               <TextField
                 type="date"
