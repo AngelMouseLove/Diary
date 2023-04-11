@@ -1,6 +1,6 @@
 import s from "./style.module.css";
 import api from "../../API";
-import PostCard from "../../Card/PostCard";
+import PostCard from "../../PostCard/PostCard";
 import { Grid } from "@mui/material";
 import { useEffect, useContext } from "react";
 import moment from "moment/moment";
