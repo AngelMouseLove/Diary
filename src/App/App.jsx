@@ -30,7 +30,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState(null);
   const [posts, setPosts] = useState([]);
-  const [selectedTabId, setSelectedTabId] = useState("cheap");
+  const [selectedTabId, setSelectedTabId] = useState("newest");
 
   const navigate = useNavigate();
 

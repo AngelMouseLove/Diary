@@ -10,7 +10,7 @@ import moment from "moment";
 import { DATE_PATTERN } from "../constants";
 import { UserContext } from "../context/UserContext";
 
-function SetPostContentForm({ close, post, _id, sortcards }) {
+function SetPostContentForm({ close, post, _id }) {
   const { posts, setPosts } = useContext(UserContext);
 
   const {
@@ -39,9 +39,7 @@ function SetPostContentForm({ close, post, _id, sortcards }) {
       .setPost(_id, newPostContent)
       .then((newPostData) => {
         setPosts(
-          [...posts.filter((post) => post._id !== _id), newPostData].sort(
-            sortcards
-          )
+          [...posts.filter((post) => post._id !== _id), newPostData]
         );
       })
       .catch((err) => console.log(err));

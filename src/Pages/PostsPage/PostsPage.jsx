@@ -21,10 +21,6 @@ const tabs = [
     id: "oldest",
     title: "Сначала старые",
   },
-  {
-    id: "favorite",
-    title: "Избранное",
-  },
 ];
 
 function PostsPage(props) {
@@ -37,33 +33,19 @@ function PostsPage(props) {
     post.text.toLowerCase().includes(props.searchTerm.toLowerCase())
   );
 
-  // const sortCards = (a, b) => {
-  //   return (
-  //     moment(b.title, DATE_PATTERN).toDate() -
-  //     moment(a.title, DATE_PATTERN).toDate()
-  //   );
-  // };
-
   useEffect(() => {
     api.getPosts().then((postsData) => {
-      setPosts(
-        postsData.filter((post) => post.author._id === currentUser._id)
-        // .sort(sortCards)
-      );
+      setPosts(postsData.filter((post) => post.author._id === currentUser._id));
     });
   }, [currentUser]);
 
   const createPost = (newPost) => {
     setPosts([newPost, ...posts]);
-    // .sort(sortCards));
   };
 
   const handleCardLike = (postId, isLike) => {
     api.changePostLike(postId, isLike).then((post) => {
-      setPosts(
-        [...posts.filter((post) => post._id !== postId), post]
-        // .sort(sortCards)
-      );
+      setPosts([...posts.filter((post) => post._id !== postId), post]);
     });
   };
 
@@ -98,8 +80,6 @@ function PostsPage(props) {
                       moment(a.title, DATE_PATTERN).toDate() -
                       moment(b.title, DATE_PATTERN).toDate()
                     );
-                  case "favorite":
-                    return;
                 }
               })
               .map((post) => (
@@ -115,7 +95,6 @@ function PostsPage(props) {
                     {...post}
                     post={post}
                     delPost={delPost}
-                    // sortcards={sortCards}
                     onLike={() =>
                       handleCardLike(
                         post._id,
