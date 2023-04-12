@@ -31,7 +31,6 @@ function App() {
   const [token, setToken] = useState(null);
   const [posts, setPosts] = useState([]);
   const [selectedTabId, setSelectedTabId] = useState("newest");
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,7 +51,7 @@ function App() {
   };
 
   return (
-    <SortContext.Provider value={{ selectedTabId, setSelectedTabId }}>
+    <SortContext.Provider value={{ selectedTabId, setSelectedTabId, }}>
       <UserContext.Provider
         value={{
           currentUser,

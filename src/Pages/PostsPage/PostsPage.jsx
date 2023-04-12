@@ -21,12 +21,15 @@ const tabs = [
     id: "oldest",
     title: "Сначала старые",
   },
+  {
+    id: "favorites",
+    title: "Сначала любимые",
+  },
 ];
 
 function PostsPage(props) {
   const { posts, setPosts } = useContext(UserContext);
   const { currentUser } = useContext(UserContext);
-
   const { selectedTabId, setSelectedTabId } = useContext(SortContext);
 
   const filteredPosts = posts.filter((post) =>
@@ -79,6 +82,14 @@ function PostsPage(props) {
                     return (
                       moment(a.title, DATE_PATTERN).toDate() -
                       moment(b.title, DATE_PATTERN).toDate()
+                    );
+                  case "favorites":
+                    return (
+                      b.likes.includes(currentUser._id) -
+                      a.likes.includes(currentUser._id) 
+                      ||
+                      moment(b.title, DATE_PATTERN).toDate() -
+                      moment(a.title, DATE_PATTERN).toDate()
                     );
                 }
               })
