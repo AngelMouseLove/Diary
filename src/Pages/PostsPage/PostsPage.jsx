@@ -7,83 +7,124 @@ import moment from "moment/moment";
 import { DATE_PATTERN } from "../../constants";
 import AddPost from "../../AddPost/AddPost";
 import { UserContext } from "../../context/UserContext";
+import { SortContext } from "../../context/SortContext";
 import { checkIsLiked } from "../../utils";
 import Spinner from "../../Spinner/Spinner";
+import Sort from "../../Sort/Sort";
+
+const tabs = [
+  {
+    id: "newest",
+    title: "Сначала новые",
+  },
+  {
+    id: "oldest",
+    title: "Сначала старые",
+  },
+  {
+    id: "favorite",
+    title: "Избранное",
+  },
+];
 
 function PostsPage(props) {
   const { posts, setPosts } = useContext(UserContext);
   const { currentUser } = useContext(UserContext);
 
+  const { selectedTabId, setSelectedTabId } = useContext(SortContext);
+
   const filteredPosts = posts.filter((post) =>
     post.text.toLowerCase().includes(props.searchTerm.toLowerCase())
   );
 
-  const sortCards = (a, b) => {
-    return (
-      moment(b.title, DATE_PATTERN).toDate() -
-      moment(a.title, DATE_PATTERN).toDate()
-    );
-  };
+  // const sortCards = (a, b) => {
+  //   return (
+  //     moment(b.title, DATE_PATTERN).toDate() -
+  //     moment(a.title, DATE_PATTERN).toDate()
+  //   );
+  // };
 
   useEffect(() => {
     api.getPosts().then((postsData) => {
       setPosts(
-        postsData
-          .filter((post) => post.author._id === currentUser._id)
-          .sort(sortCards)
+        postsData.filter((post) => post.author._id === currentUser._id)
+        // .sort(sortCards)
       );
     });
   }, [currentUser]);
 
   const createPost = (newPost) => {
-    setPosts([newPost, ...posts].sort(sortCards));
+    setPosts([newPost, ...posts]);
+    // .sort(sortCards));
   };
 
   const handleCardLike = (postId, isLike) => {
     api.changePostLike(postId, isLike).then((post) => {
       setPosts(
-        [...posts.filter((post) => post._id !== postId), post].sort(sortCards)
+        [...posts.filter((post) => post._id !== postId), post]
+        // .sort(sortCards)
       );
     });
   };
 
   const delPost = (post) => {
     setPosts(posts.filter((p) => p._id !== post._id));
-    api
-      .delPost(post._id)
-
-      .catch((err) => console.log(err));
+    api.delPost(post._id).catch((err) => console.log(err));
   };
 
   return (
     <>
       <AddPost create={createPost} />
+      <Sort
+        tabs={tabs}
+        currentSort={selectedTabId}
+        onChangeSort={(tabid) => {
+          setSelectedTabId(tabid);
+        }}
+      />
       {!!filteredPosts.length ? (
         <>
           <Grid container spacing={4} className={s.gridContainer}>
-            {filteredPosts.map((post) => (
-              <Grid
-                key={post.title}
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                sx={{ display: "flex", alignItems: "stretch" }}
-              >
-                <PostCard
-                  {...post}
-                  post={post}
-                  delPost={delPost}
-                  sortcards={sortCards}
-                  onLike={() =>
-                    handleCardLike(
-                      post._id,
-                      checkIsLiked(post.likes, currentUser._id)
-                    )
-                  }
-                />
-              </Grid>
-            ))}
+            {filteredPosts
+              .sort((a, b) => {
+                switch (selectedTabId) {
+                  case "newest":
+                    return (
+                      moment(b.title, DATE_PATTERN).toDate() -
+                      moment(a.title, DATE_PATTERN).toDate()
+                    );
+                  case "oldest":
+                    return (
+                      moment(a.title, DATE_PATTERN).toDate() -
+                      moment(b.title, DATE_PATTERN).toDate()
+                    );
+                  case "favorite":
+                    return;
+                }
+              })
+              .map((post) => (
+                <Grid
+                  key={post.title}
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  sx={{ display: "flex", alignItems: "stretch" }}
+                >
+                  <PostCard
+                    {...post}
+                    post={post}
+                    delPost={delPost}
+                    // sortcards={sortCards}
+                    onLike={() =>
+                      handleCardLike(
+                        post._id,
+                        checkIsLiked(post.likes, currentUser._id)
+                      )
+                    }
+                  />
+                </Grid>
+              ))}
           </Grid>
         </>
       ) : (
