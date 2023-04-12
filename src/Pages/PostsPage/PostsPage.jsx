@@ -2,7 +2,7 @@ import s from "./style.module.css";
 import api from "../../API";
 import PostCard from "../../PostCard/PostCard";
 import { Grid } from "@mui/material";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import moment from "moment/moment";
 import { DATE_PATTERN } from "../../constants";
 import AddPost from "../../AddPost/AddPost";
@@ -32,6 +32,8 @@ function PostsPage(props) {
   const { currentUser } = useContext(UserContext);
   const { selectedTabId, setSelectedTabId } = useContext(SortContext);
 
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const filteredPosts = posts.filter((post) =>
     post.text.toLowerCase().includes(props.searchTerm.toLowerCase())
   );
@@ -39,6 +41,7 @@ function PostsPage(props) {
   useEffect(() => {
     api.getPosts().then((postsData) => {
       setPosts(postsData.filter((post) => post.author._id === currentUser._id));
+      setIsLoaded(true);
     });
   }, [currentUser]);
 
@@ -56,7 +59,7 @@ function PostsPage(props) {
     setPosts(posts.filter((p) => p._id !== post._id));
     api.delPost(post._id).catch((err) => console.log(err));
   };
-
+console.log(isLoaded)
   return (
     <>
       <AddPost create={createPost} />
@@ -67,7 +70,7 @@ function PostsPage(props) {
           setSelectedTabId(tabid);
         }}
       />
-      {!!filteredPosts.length ? (
+      {isLoaded ? (
         <>
           <Grid container spacing={4} className={s.gridContainer}>
             {filteredPosts
