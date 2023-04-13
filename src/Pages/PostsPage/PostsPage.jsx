@@ -59,7 +59,7 @@ function PostsPage(props) {
     setPosts(posts.filter((p) => p._id !== post._id));
     api.delPost(post._id).catch((err) => console.log(err));
   };
-console.log(isLoaded)
+  console.log(isLoaded)
   return (
     <>
       <AddPost create={createPost} />
@@ -89,7 +89,7 @@ console.log(isLoaded)
                   case "favorites":
                     return (
                       b.likes.includes(currentUser._id) -
-                      a.likes.includes(currentUser._id) 
+                      a.likes.includes(currentUser._id)
                       ||
                       moment(b.title, DATE_PATTERN).toDate() -
                       moment(a.title, DATE_PATTERN).toDate()

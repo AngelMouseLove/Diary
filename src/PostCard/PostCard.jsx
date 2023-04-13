@@ -77,8 +77,7 @@ function PostCard({
   return (
     <Card
       sx={{
-        maxWidth: 345,
-        minWidth: 345,
+        width: 345,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -92,7 +91,7 @@ function PostCard({
             </Avatar>
           }
           title={moment(title, DATE_PATTERN).format("Do MMMM YYYY, dddd")}
-          // subheader="September 14, 2016"
+        // subheader="September 14, 2016"
         />
         <Link to={`/posts/${_id}`} style={{ textDecoration: "none" }}>
           {/* Если нужно будет добавить картинку, то сделать условный оператор imageExist && <CardMedia ... */}
