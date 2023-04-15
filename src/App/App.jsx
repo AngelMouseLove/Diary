@@ -9,6 +9,7 @@ import PostsPage from "../Pages/PostsPage/PostsPage";
 import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 import MainPage from "../Pages/MainPage/MainPage";
 import { UserContext } from "../context/UserContext";
+import { PostsContext } from "../context/PostsContent";
 import { useState, useEffect } from "react";
 import Logo from "../Logo/Logo";
 import SearchBar from "../SearchBar/SearchBar";
@@ -53,9 +54,7 @@ function App() {
         currentUser,
         setCurrentUser,
         token,
-        setToken,
-        posts,
-        setPosts,
+        setToken
       }}
     >
       <ThemeProvider theme={darkTheme}>
@@ -75,10 +74,13 @@ function App() {
         </Header>
         <main className={s.container}>
           <Routes>
+
             <Route
               index
               element={
-                token ? <PostsPage searchTerm={searchTerm} /> : <MainPage />
+                token
+                  ? <PostsContext.Provider value={{ setPosts, posts }}><PostsPage searchTerm={searchTerm} /></PostsContext.Provider>
+                  : <MainPage />
               }
             />
             <Route path="/posts/:postId" element={token && <PostPage />} />

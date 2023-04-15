@@ -10,6 +10,7 @@ import { UserContext } from "../../context/UserContext";
 import { checkIsLiked } from "../../utils";
 import Spinner from "../../Spinner/Spinner";
 import Sort from "../../Sort/Sort";
+import { PostsContext } from "../../context/PostsContent";
 
 const tabs = [
   {
@@ -27,13 +28,13 @@ const tabs = [
 ];
 
 function PostsPage(props) {
-  const { posts, setPosts } = useContext(UserContext);
+  const { posts, setPosts } = useContext(PostsContext);
   const { currentUser } = useContext(UserContext);
   const [selectedTabId, setSelectedTabId] = useState("newest");
 
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const filteredPosts = posts.filter((post) =>
+  const filteredPosts = posts?.filter((post) =>
     post.text.toLowerCase().includes(props.searchTerm.toLowerCase())
   );
 

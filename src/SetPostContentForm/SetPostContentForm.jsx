@@ -8,10 +8,10 @@ import { Controller } from "react-hook-form";
 import { urlValidation } from "../validation";
 import moment from "moment";
 import { DATE_PATTERN } from "../constants";
-import { UserContext } from "../context/UserContext";
+import { PostsContext } from "../context/PostsContent";
 
 function SetPostContentForm({ close, post, _id }) {
-  const { posts, setPosts } = useContext(UserContext);
+  const { posts, setPosts } = useContext(PostsContext);
 
   const {
     handleSubmit,
