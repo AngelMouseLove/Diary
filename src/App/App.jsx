@@ -17,7 +17,6 @@ import UserInfo from "../UserInfo/UserInfo";
 import { useNavigate } from "react-router-dom";
 import api from "../API";
 import { Box } from "@mui/material";
-import { SortContext } from "../context/SortContext";
 
 const darkTheme = createTheme({
   palette: {
@@ -30,7 +29,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState(null);
   const [posts, setPosts] = useState([]);
-  const [selectedTabId, setSelectedTabId] = useState("newest");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,51 +49,48 @@ function App() {
   };
 
   return (
-    <SortContext.Provider value={{ selectedTabId, setSelectedTabId, }}>
-      <UserContext.Provider
-        value={{
-          currentUser,
-          setCurrentUser,
-          token,
-          setToken,
-          posts,
-          setPosts,
-        }}
-      >
-        <ThemeProvider theme={darkTheme}>
-          <CssBaseline />
-          <Header>
-            <Box
-              sx={{
-                display: "flex",
-                width: "60vw",
-                justifyContent: "space-between",
-              }}
-            >
-              <Logo onClick={handleLogoClick} />
-              {/* <Menu /> пока скрыла потому что конфликтует с серч баром, возможно стоит вообще убрать меню, т.к не нужно */}
-              <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
-            </Box>
-            {token && <UserInfo />}
-          </Header>
-          <main className={s.container}>
-            <Routes>
-              <Route
-                index
-                element={
-                  token ? <PostsPage searchTerm={searchTerm} /> : <MainPage />
-                }
-              />
-              <Route path="/posts/:postId" element={token && <PostPage />} />
-              <Route path="/signup" element={<MainPage />} />
-              <Route path="/login" element={<MainPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </main>
-          <Footer />
-        </ThemeProvider>
-      </UserContext.Provider>
-    </SortContext.Provider>
+    <UserContext.Provider
+      value={{
+        currentUser,
+        setCurrentUser,
+        token,
+        setToken,
+        posts,
+        setPosts,
+      }}
+    >
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Header>
+          <Box
+            sx={{
+              display: "flex",
+              width: "60vw",
+              justifyContent: "space-between",
+            }}
+          >
+            <Logo onClick={handleLogoClick} />
+            <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
+          </Box>
+          {token && <UserInfo />}
+        </Header>
+        <main className={s.container}>
+          <Routes>
+            <Route
+              index
+              element={
+                token ? <PostsPage searchTerm={searchTerm} /> : <MainPage />
+              }
+            />
+            <Route path="/posts/:postId" element={token && <PostPage />} />
+            <Route path="/signup" element={<MainPage />} />
+            <Route path="/login" element={<MainPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </ThemeProvider>
+    </UserContext.Provider>
   );
 }
 

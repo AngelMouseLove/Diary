@@ -7,7 +7,6 @@ import moment from "moment/moment";
 import { DATE_PATTERN } from "../../constants";
 import AddPost from "../../AddPost/AddPost";
 import { UserContext } from "../../context/UserContext";
-import { SortContext } from "../../context/SortContext";
 import { checkIsLiked } from "../../utils";
 import Spinner from "../../Spinner/Spinner";
 import Sort from "../../Sort/Sort";
@@ -30,7 +29,7 @@ const tabs = [
 function PostsPage(props) {
   const { posts, setPosts } = useContext(UserContext);
   const { currentUser } = useContext(UserContext);
-  const { selectedTabId, setSelectedTabId } = useContext(SortContext);
+  const [selectedTabId, setSelectedTabId] = useState("newest");
 
   const [isLoaded, setIsLoaded] = useState(false);
 
