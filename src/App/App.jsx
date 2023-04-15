@@ -11,7 +11,6 @@ import MainPage from "../Pages/MainPage/MainPage";
 import { UserContext } from "../context/UserContext";
 import { useState, useEffect } from "react";
 import Logo from "../Logo/Logo";
-// import Menu from "../Menu/Menu";
 import SearchBar from "../SearchBar/SearchBar";
 import UserInfo from "../UserInfo/UserInfo";
 import { useNavigate } from "react-router-dom";
