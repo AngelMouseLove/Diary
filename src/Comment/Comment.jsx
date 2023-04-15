@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import api from "../API";
 import { Box, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useParams } from "react-router-dom";
 import s from "./Comment.module.css";
+import { UserContext } from "../context/UserContext";
 
 function Comment({
   author,
@@ -14,6 +15,7 @@ function Comment({
   newComments,
 }) {
   const [authorComment, setAuthorComment] = useState({});
+  const {currentUser} = useContext(UserContext);
 
   const { postId } = useParams();
 
@@ -57,9 +59,12 @@ function Comment({
         })}
       </Box>
       <Box component={"p"}>{text}</Box>
-      <Button onClick={delComment} sx={{ m: "0 0 0 auto", display: "block" }}>
-        <DeleteIcon />
-      </Button>
+      {
+        author === currentUser._id && 
+        <Button onClick={delComment} sx={{ m: "0 0 0 auto", display: "block" }}>
+          <DeleteIcon />
+        </Button>
+      }
     </Box>
   );
 }

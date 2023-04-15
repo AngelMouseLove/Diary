@@ -5,7 +5,8 @@ import DialogActions from "@mui/material/DialogActions";
 import api from "../API";
 import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
-import { titleValidation } from "../validation";
+import moment from "moment";
+import { DATE_PATTERN } from "../constants";
 import { urlValidation } from "../validation";
 import s from "./NewPostForm.module.css";
 
@@ -27,7 +28,11 @@ function NewPostForm({ create, close }) {
   });
 
   const addNewPost = (post) => {
-    const newPost = { ...post, tags: post.tags.split(", ") };
+    const newPost = {
+      ...post,
+      tags: post.tags.split(", "),
+      title: moment(post.title, "YYYY-MM-DD").format(DATE_PATTERN),
+    };
     api
       .createPost(newPost)
       .then((postData) => {
@@ -72,17 +77,17 @@ function NewPostForm({ create, close }) {
           <Controller
             name="title"
             control={control}
-            rules={titleValidation}
+            rules={{required: "Обязательное поле"}}
             render={({ field: { onChange, value } }) => (
               <TextField
-                label="Введите дату события"
+                type="date"
                 size="medium"
                 margin="normal"
                 fullWidth
                 value={value}
                 onChange={(e) => onChange(e)}
                 error={!!errors.title?.message}
-                helperText="Введите дату в формате ДД.ММ.ГГГГ"
+                helperText="Введите дату события"
               />
             )}
           />
@@ -91,7 +96,7 @@ function NewPostForm({ create, close }) {
             name="text"
             control={control}
             rules={{
-              required: "Обязательное поле"
+              required: "Обязательное поле",
             }}
             render={({ field: { onChange, value } }) => (
               <TextField
@@ -112,7 +117,7 @@ function NewPostForm({ create, close }) {
             name="tags"
             control={control}
             rules={{
-              required: "Обязательное поле"
+              required: "Обязательное поле",
             }}
             render={({ field: { onChange, value } }) => (
               <TextField

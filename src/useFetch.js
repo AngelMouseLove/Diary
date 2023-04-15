@@ -16,7 +16,7 @@ const onResponse = (res) => {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 };
 
-function useApi() {
+function useFetch() {
 
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -36,4 +36,4 @@ function useApi() {
     return [data, loading, error];
 }
 
-export default useApi;
+export default useFetch;

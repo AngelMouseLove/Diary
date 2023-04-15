@@ -12,7 +12,6 @@
 }
 
 .img {
-  height: 100%;
   object-fit: contain;
   max-width:100%;
 }
@@ -37,8 +36,11 @@
 }
 
 .content {
-  padding: 20px;
   width: 310px;
+}
+
+.postContent {
+  margin-bottom: 16px;
 }
 
 .postContent p {

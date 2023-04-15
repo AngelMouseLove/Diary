@@ -7,8 +7,10 @@ import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import { urlValidation } from "../validation";
 import { UserContext } from "../context/UserContext";
+import SetPassword from "../SetPassword/SetPassword";
 
 function SetUserInfoForm({ close }) {
+  
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const {
@@ -27,6 +29,7 @@ function SetUserInfoForm({ close }) {
   });
 
   const newUserInfo = (data) => {
+    
     const newData = { name: data.name, about: data.about };
     const newAvatar = { avatar: data.avatar };
 
@@ -127,6 +130,7 @@ function SetUserInfoForm({ close }) {
             <Button type="submit" variant="contained" sx={{ mt: "15px" }}>
               Записать
             </Button>
+            <SetPassword />
             <Button onClick={close} sx={{ mt: "15px" }}>
               Отмена
             </Button>
