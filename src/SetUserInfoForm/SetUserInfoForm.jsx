@@ -34,7 +34,7 @@ function SetUserInfoForm({ close }) {
     const newAvatar = { avatar: data.avatar };
 
     Promise.all([api.setUserInfo(newData), api.setUserAvatar(newAvatar)])
-      .then(([userData, userAvatar]) => {
+      .then(([userData]) => {
         setCurrentUser(userData);
       })
       .catch((err) => console.log(err));

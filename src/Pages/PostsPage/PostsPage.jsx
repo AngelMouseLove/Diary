@@ -39,10 +39,12 @@ function PostsPage(props) {
   );
 
   useEffect(() => {
-    api.getPosts().then((postsData) => {
-      setPosts(postsData.filter((post) => post.author._id === currentUser._id));
-      setIsLoaded(true);
-    });
+    if (currentUser) {
+      api.getPosts().then((postsData) => {
+        setPosts(postsData.filter((post) => post.author._id === currentUser._id));
+        setIsLoaded(true);
+      });
+    }
   }, [currentUser]);
 
   const createPost = (newPost) => {

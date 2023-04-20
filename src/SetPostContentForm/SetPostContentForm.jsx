@@ -73,8 +73,8 @@ function SetPostContentForm({ close, post, _id }) {
               src={watch("image")}
               alt="post-img"
               sx={{
-                width: "30vw",
-                height: "100%",
+                width: "250px",
+                height: "250px",
                 display: "block",
                 margin: "0 auto",
               }}
