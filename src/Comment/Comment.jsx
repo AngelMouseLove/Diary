@@ -14,17 +14,10 @@ function Comment({
   setNewComments,
   newComments,
 }) {
-  const [authorComment, setAuthorComment] = useState({});
+  const [authorComment, setAuthorComment] = useState(author);
   const {currentUser} = useContext(UserContext);
 
   const { postId } = useParams();
-
-  useEffect(() => {
-    api
-      .getUserById(author._id)
-      .then((authorData) => setAuthorComment(authorData))
-      .catch((err) => console.log(err));
-  }, [author]);
 
   const delComment = () => {
     setNewComments(newComments.filter((c) => c._id !== newComments._id));
@@ -60,7 +53,7 @@ function Comment({
       </Box>
       <Box component={"p"}>{text}</Box>
       {
-        author === currentUser._id && 
+        authorComment._id === currentUser._id && 
         <Button onClick={delComment} sx={{ m: "0 0 0 auto", display: "block" }}>
           <DeleteIcon />
         </Button>
