@@ -21,7 +21,7 @@ function Comment({
 
   useEffect(() => {
     api
-      .getUserById(author)
+      .getUserById(author._id)
       .then((authorData) => setAuthorComment(authorData))
       .catch((err) => console.log(err));
   }, [author]);
