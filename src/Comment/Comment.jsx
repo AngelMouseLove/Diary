@@ -14,17 +14,10 @@ function Comment({
   setNewComments,
   newComments,
 }) {
-  const [authorComment, setAuthorComment] = useState({});
+  
   const {currentUser} = useContext(UserContext);
 
   const { postId } = useParams();
-
-  useEffect(() => {
-    api
-      .getUserById(author)
-      .then((authorData) => setAuthorComment(authorData))
-      .catch((err) => console.log(err));
-  }, [author]);
 
   const delComment = () => {
     setNewComments(newComments.filter((c) => c._id !== newComments._id));
@@ -39,13 +32,13 @@ function Comment({
       <hr></hr>
       <Box sx={{ display: "flex", gap: 1, alignItems: "center", m: 1 }}>
         <img
-          src={authorComment.avatar}
+          src={author.avatar}
           alt="author-avatar"
           className={s.avatar}
         ></img>
         <Box>
-          <Box component={"h4"}>{authorComment.name}</Box>
-          <Box component={"h5"}>{authorComment.about}</Box>
+          <Box component={"h4"}>{author.name}</Box>
+          <Box component={"h5"}>{author.about}</Box>
         </Box>
       </Box>
       <Box component={"b"} sx={{ display: "block", mb: 1 }}>
@@ -60,7 +53,7 @@ function Comment({
       </Box>
       <Box component={"p"}>{text}</Box>
       {
-        author === currentUser._id && 
+        author._id === currentUser._id && 
         <Button onClick={delComment} sx={{ m: "0 0 0 auto", display: "block" }}>
           <DeleteIcon />
         </Button>
