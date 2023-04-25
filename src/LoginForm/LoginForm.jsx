@@ -30,9 +30,9 @@ function LoginForm({ close }) {
   const navigate = useNavigate();
 
   const redirect = () => {
-    close()
-    navigate("/signup")
-  }
+    close();
+    navigate("/signup");
+  };
 
   const {
     handleSubmit,
@@ -62,10 +62,9 @@ function LoginForm({ close }) {
       })
       .catch((err) => {
         if (err.status === 401) {
-          handleClickOpen()
-        } else
-        console.log(err.message)
-      })
+          handleClickOpen();
+        } else console.log(err.message);
+      });
   };
 
   return (
@@ -96,7 +95,7 @@ function LoginForm({ close }) {
           <Controller
             name="password"
             control={control}
-            rules={{required:"Обязательное поле"}}
+            rules={{ required: "Обязательное поле" }}
             render={({ field: { onChange, value } }) => (
               <TextField
                 label="Пароль"
@@ -115,10 +114,8 @@ function LoginForm({ close }) {
             <Button variant="contained" type="submit">
               Продолжить вести дневник
             </Button>
-            <SetPassword/>
-            <Button onClick={redirect}>
-              Завести новый дневник
-            </Button>
+            <SetPassword />
+            <Button onClick={redirect}>Завести новый дневник</Button>
             <Button onClick={close}>Отмена</Button>
           </DialogActions>
         </Box>

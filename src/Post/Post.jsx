@@ -59,10 +59,11 @@ export const Post = ({
               </div>
             </div>
             <div>
-            <LikeButton
-              isLiked={checkIsLiked(likes, currentUser._id)}
-              onClick={handleLike}
-            /> {(likes.length || likes.length !== 0) && likes.length}
+              <LikeButton
+                isLiked={checkIsLiked(likes, currentUser._id)}
+                onClick={handleLike}
+              />{" "}
+              {(likes.length || likes.length !== 0) && likes.length}
             </div>
             <div className={s.postContent}>
               <p>
@@ -71,21 +72,22 @@ export const Post = ({
                 </b>
               </p>
               <p>{text}</p>
-              {tags && tags.map((tag) => (
-                <Box
-                  key={tag}
-                  component="span"
-                  sx={{
-                    backgroundColor: "#273f96",
-                    color: "#ffffff",
-                    padding: "5px",
-                    borderRadius: "3px",
-                    mr: 1,
-                  }}
-                >
-                  {tag}
-                </Box>
-              ))}
+              {tags &&
+                tags.map((tag) => (
+                  <Box
+                    key={tag}
+                    component="span"
+                    sx={{
+                      backgroundColor: "#273f96",
+                      color: "#ffffff",
+                      padding: "5px",
+                      borderRadius: "3px",
+                      mr: 1,
+                    }}
+                  >
+                    {tag}
+                  </Box>
+                ))}
             </div>
             <Box>
               <CommentList commentList={comments} />

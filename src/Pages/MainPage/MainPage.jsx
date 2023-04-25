@@ -5,7 +5,14 @@ import SignUpButton from "../../SignUpButton/SignUpButton";
 
 function MainPage() {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "60vh" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        height: "60vh",
+      }}
+    >
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >

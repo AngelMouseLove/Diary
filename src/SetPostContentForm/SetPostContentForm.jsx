@@ -38,9 +38,7 @@ function SetPostContentForm({ close, post, _id }) {
     api
       .setPost(_id, newPostContent)
       .then((newPostData) => {
-        setPosts(
-          [...posts.filter((post) => post._id !== _id), newPostData]
-        );
+        setPosts([...posts.filter((post) => post._id !== _id), newPostData]);
       })
       .catch((err) => console.log(err));
     close();
@@ -73,8 +71,8 @@ function SetPostContentForm({ close, post, _id }) {
               src={watch("image")}
               alt="post-img"
               sx={{
-                width: "250px",
-                height: "250px",
+                width: "30vw",
+                height: "100%",
                 display: "block",
                 margin: "0 auto",
               }}

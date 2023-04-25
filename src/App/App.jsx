@@ -54,7 +54,7 @@ function App() {
         currentUser,
         setCurrentUser,
         token,
-        setToken
+        setToken,
       }}
     >
       <ThemeProvider theme={darkTheme}>
@@ -68,19 +68,24 @@ function App() {
             }}
           >
             <Logo onClick={handleLogoClick} />
-           {token && <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />}
+            {token && (
+              <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
+            )}
           </Box>
           {token && <UserInfo />}
         </Header>
         <main className={s.container}>
           <Routes>
-
             <Route
               index
               element={
-                token
-                  ? <PostsContext.Provider value={{ setPosts, posts }}><PostsPage searchTerm={searchTerm} /></PostsContext.Provider>
-                  : <MainPage />
+                token ? (
+                  <PostsContext.Provider value={{ setPosts, posts }}>
+                    <PostsPage searchTerm={searchTerm} />
+                  </PostsContext.Provider>
+                ) : (
+                  <MainPage />
+                )
               }
             />
             <Route path="/posts/:postId" element={token && <PostPage />} />

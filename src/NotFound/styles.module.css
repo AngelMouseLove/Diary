@@ -2,7 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .main {
@@ -29,7 +30,7 @@
 
 .center h1 {
   font-size: 100px;
-  color:#1a3d7b;
+  color: #1a3d7b;
   letter-spacing: 5px;
   font-weight: 700;
   text-shadow: 10px 9px 3px #1a3d7bbe;
@@ -68,8 +69,7 @@
   text-shadow: 9px 6px 3px #b2bec3;
 }
 
-
 .center:hover a {
   color: #fff;
-  background:#1a3d7b;
+  background: #1a3d7b;
 }

@@ -37,19 +37,19 @@ class Api {
     }).then(onResponse);
   }
 
-  resetPassword(email){
+  resetPassword(email) {
     return fetch(`https://api.react-learning.ru/forgot-password`, {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(email)
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(email),
     }).then(onResponse);
   }
 
-  setPassword(token, password){
+  setPassword(token, password) {
     return fetch(`https://api.react-learning.ru/password-reset/${token}`, {
       method: "PATCH",
-      headers: {"Content-Type": "application/json",},
-      body: JSON.stringify(password)
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(password),
     }).then(onResponse);
   }
 
@@ -131,13 +131,6 @@ class Api {
     }).then(onResponse);
   }
 
-  // search(searchQuery) {
-  //     return fetch(
-  //         `${this._baseUrl}/products/search?query=${searchQuery}`,
-  //         this._requestInit
-  //     ).then(onResponce)
-  // }
-
   changePostLike(postId, isLike) {
     return fetch(`${this._baseUrl}/posts/likes/${postId}`, {
       method: !isLike ? "PUT" : "DELETE",
@@ -145,12 +138,6 @@ class Api {
     }).then(onResponse);
   }
 }
-
-// const config = {
-//   baseUrl: "https://api.react-learning.ru/v2/group-10",
-// token:
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2UzZmUwMDU5Yjk4YjAzOGY3N2IzYmEiLCJncm91cCI6Imdyb3VwLTEwIiwiaWF0IjoxNjc1ODg3NTU5LCJleHAiOjE3MDc0MjM1NTl9.x1FR1Mk25UaVZzRK3DcnXQ-kOhiPP4nMuXzS8pMwrVg",
-// };
 
 const api = new Api("https://api.react-learning.ru/v2/group-10");
 

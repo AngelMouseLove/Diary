@@ -4,7 +4,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   padding: 0;
-  
 }
 
 #root {
@@ -12,5 +11,3 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
-
-

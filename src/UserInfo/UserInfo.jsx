@@ -34,11 +34,11 @@ function UserInfo() {
           sx={{ width: "32px", height: "32px", borderRadius: "50%", mr: 2 }}
         ></Box>
       </Box>
-      <Box sx={{mr:1}}>
+      <Box sx={{ mr: 1 }}>
         <Box component="h4">{currentUser?.name}</Box>
         <Box component="h5">{currentUser?.about}</Box>
       </Box>
-      <Box sx={{display: "grid", gridTemplateRows: "auto auto"}}>
+      <Box sx={{ display: "grid", gridTemplateRows: "auto auto" }}>
         <LogOutButton />
         <Button onClick={handleOpenUserInfo}>Изменить</Button>
         <Dialog
