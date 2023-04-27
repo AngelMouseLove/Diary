@@ -30,6 +30,7 @@ const tabs = [
 function PostsPage(props) {
   const { posts, setPosts } = useContext(PostsContext);
   const { currentUser } = useContext(UserContext);
+
   const [selectedTabId, setSelectedTabId] = useState("newest");
 
   const [isLoaded, setIsLoaded] = useState(false);
