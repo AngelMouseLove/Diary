@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/diary/static/css/main.637e2f8e.css",
+    "main.js": "/diary/static/js/main.6d2d48c3.js",
+    "static/media/background.jpg": "/diary/static/media/background.e64d98c0beb9f2392d24.jpg",
+    "static/media/Logo.svg": "/diary/static/media/Logo.8281f2ddf62029c4ae6ffa8682bc6e3c.svg",
+    "index.html": "/diary/index.html",
+    "main.637e2f8e.css.map": "/diary/static/css/main.637e2f8e.css.map",
+    "main.6d2d48c3.js.map": "/diary/static/js/main.6d2d48c3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.637e2f8e.css",
+    "static/js/main.6d2d48c3.js"
+  ]
+}
