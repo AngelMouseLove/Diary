@@ -41,15 +41,15 @@ class Api {
     return fetch(`https://api.react-learning.ru/forgot-password`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(email),
+      body: JSON.stringify(email)
     }).then(onResponse);
   }
 
   setPassword(token, password) {
     return fetch(`https://api.react-learning.ru/password-reset/${token}`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(password),
+      headers: { "Content-Type": "application/json", },
+      body: JSON.stringify(password)
     }).then(onResponse);
   }
 

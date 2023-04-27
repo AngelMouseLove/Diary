@@ -29,6 +29,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(null);
   const [posts, setPosts] = useState([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,9 +69,7 @@ function App() {
             }}
           >
             <Logo onClick={handleLogoClick} />
-            {token && (
-              <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
-            )}
+            {token && <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />}
           </Box>
           {token && <UserInfo />}
         </Header>
