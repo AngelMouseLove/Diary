@@ -20,19 +20,12 @@ function PostPage() {
   }, [postId]);
 
   const handleLike = () => {
-    api.changePostLike(post._id, checkIsLiked(post.likes, currentUser._id))
-      .then((post) => setPost(post))
-  }
+    api
+      .changePostLike(post._id, checkIsLiked(post.likes, currentUser._id))
+      .then((post) => setPost(post));
+  };
 
-  return (
-    <>
-    {
-      post
-      ? <Post {...post} onLike={handleLike} />
-      : <Spinner />
-    }
-    </>
-  );
+  return <>{post ? <Post {...post} onLike={handleLike} /> : <Spinner />}</>;
 }
 
 export default PostPage;

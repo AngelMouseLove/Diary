@@ -1,10 +1,10 @@
-import s from '../NotFound/styles.module.css'
-import { useNavigate } from 'react-router-dom'
+import s from "../NotFound/styles.module.css";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
-    <div className={s.main}> 
+    <div className={s.main}>
       <div className={s.center}>
         <h1>404</h1>
         <h2>PAGE NOT FOUND</h2>
@@ -13,7 +13,7 @@ const NotFound = () => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;

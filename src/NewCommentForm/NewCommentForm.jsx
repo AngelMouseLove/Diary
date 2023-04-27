@@ -1,13 +1,19 @@
-import React from 'react';
-import { DialogContent, Box, Button, TextField, DialogActions, DialogTitle } from '@mui/material';
+import React from "react";
+import {
+  DialogContent,
+  Box,
+  Button,
+  TextField,
+  DialogActions,
+  DialogTitle,
+} from "@mui/material";
 import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import { commenTextValidation } from "../validation";
-import api from '../API';
-import { useParams } from 'react-router';
+import api from "../API";
+import { useParams } from "react-router";
 
-function NewCommentForm({close, create, setNewComments}) {
-
+function NewCommentForm({ close, create, setNewComments }) {
   let { postId } = useParams();
 
   const {
@@ -17,7 +23,7 @@ function NewCommentForm({close, create, setNewComments}) {
     control,
   } = useForm({
     mode: "onChange",
-    defaultValues: {text: ""},
+    defaultValues: { text: "" },
   });
 
   const addNewComment = (comment) => {
@@ -25,18 +31,18 @@ function NewCommentForm({close, create, setNewComments}) {
       .createComment(postId, comment)
       .then((data) => {
         create(data);
-        setNewComments(data.comments)
+        setNewComments(data.comments);
       })
-      .catch((err) => console.log(err))
-    reset()
-    close()
-  }
+      .catch((err) => console.log(err));
+    reset();
+    close();
+  };
 
   return (
     <>
       <DialogTitle>Новый комментарий</DialogTitle>
-      <DialogContent >
-        <Box component={"form"} onSubmit={handleSubmit(addNewComment)} >
+      <DialogContent>
+        <Box component={"form"} onSubmit={handleSubmit(addNewComment)}>
           <Controller
             name="text"
             control={control}

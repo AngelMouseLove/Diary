@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import api from "../API";
 import { Box, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -14,8 +14,7 @@ function Comment({
   setNewComments,
   newComments,
 }) {
-  
-  const {currentUser} = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const { postId } = useParams();
 
@@ -31,11 +30,7 @@ function Comment({
     <Box>
       <hr></hr>
       <Box sx={{ display: "flex", gap: 1, alignItems: "center", m: 1 }}>
-        <img
-          src={author.avatar}
-          alt="author-avatar"
-          className={s.avatar}
-        ></img>
+        <img src={author.avatar} alt="author-avatar" className={s.avatar}></img>
         <Box>
           <Box component={"h4"}>{author.name}</Box>
           <Box component={"h5"}>{author.about}</Box>
@@ -52,12 +47,11 @@ function Comment({
         })}
       </Box>
       <Box component={"p"}>{text}</Box>
-      {
-        author._id === currentUser._id && 
+      {author._id === currentUser._id && (
         <Button onClick={delComment} sx={{ m: "0 0 0 auto", display: "block" }}>
           <DeleteIcon />
         </Button>
-      }
+      )}
     </Box>
   );
 }

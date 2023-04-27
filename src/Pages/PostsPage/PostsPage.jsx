@@ -42,7 +42,9 @@ function PostsPage(props) {
   useEffect(() => {
     if (currentUser) {
       api.getPosts().then((postsData) => {
-        setPosts(postsData.filter((post) => post.author._id === currentUser._id));
+        setPosts(
+          postsData.filter((post) => post.author._id === currentUser._id)
+        );
         setIsLoaded(true);
       });
     }
@@ -62,7 +64,7 @@ function PostsPage(props) {
     setPosts(posts.filter((p) => p._id !== post._id));
     api.delPost(post._id).catch((err) => console.log(err));
   };
-  console.log(isLoaded)
+  console.log(isLoaded);
   return (
     <>
       <AddPost create={createPost} />
@@ -92,10 +94,9 @@ function PostsPage(props) {
                   case "favorites":
                     return (
                       b.likes.includes(currentUser._id) -
-                      a.likes.includes(currentUser._id)
-                      ||
+                        a.likes.includes(currentUser._id) ||
                       moment(b.title, DATE_PATTERN).toDate() -
-                      moment(a.title, DATE_PATTERN).toDate()
+                        moment(a.title, DATE_PATTERN).toDate()
                     );
                 }
               })

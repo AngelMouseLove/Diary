@@ -9,10 +9,10 @@ import { UserContext } from "../context/UserContext";
 
 function LogoutModal({ close }) {
   const navigate = useNavigate();
-  const {setToken} = useContext(UserContext)
+  const { setToken } = useContext(UserContext);
 
   const logout = () => {
-    setToken(null)
+    setToken(null);
     localStorage.removeItem("token");
     close();
     navigate("/");

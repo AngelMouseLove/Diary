@@ -14,9 +14,17 @@ function AddPost({ create }) {
 
   return (
     <>
-      <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-        <Box component="p" sx={{mr: "10vw"}}>
-        Ведите свой дневник. <br></br> Создавайте посты с&nbsp;воспоминаниями, читайте посты, делайте комментарии к&nbsp;записям. <br></br> Вы&nbsp;можете лайкнуть записи, редактировать или удалить запись.
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Box component="p" sx={{ mr: "10vw" }}>
+          Ведите свой дневник. <br></br> Создавайте посты с&nbsp;воспоминаниями,
+          читайте посты, делайте комментарии к&nbsp;записям. <br></br>{" "}
+          Вы&nbsp;можете лайкнуть записи, редактировать или удалить запись.
         </Box>
         <Box>
           <Button variant="contained" onClick={handleOpen}>

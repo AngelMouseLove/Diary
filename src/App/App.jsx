@@ -55,7 +55,7 @@ function App() {
         currentUser,
         setCurrentUser,
         token,
-        setToken
+        setToken,
       }}
     >
       <ThemeProvider theme={darkTheme}>
@@ -75,13 +75,16 @@ function App() {
         </Header>
         <main className={s.container}>
           <Routes>
-
             <Route
               index
               element={
-                token
-                  ? <PostsContext.Provider value={{ setPosts, posts }}><PostsPage searchTerm={searchTerm} /></PostsContext.Provider>
-                  : <MainPage />
+                token ? (
+                  <PostsContext.Provider value={{ setPosts, posts }}>
+                    <PostsPage searchTerm={searchTerm} />
+                  </PostsContext.Provider>
+                ) : (
+                  <MainPage />
+                )
               }
             />
             <Route path="/posts/:postId" element={token && <PostPage />} />

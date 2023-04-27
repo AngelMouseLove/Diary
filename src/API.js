@@ -131,7 +131,6 @@ class Api {
     }).then(onResponse);
   }
 
-
   changePostLike(postId, isLike) {
     return fetch(`${this._baseUrl}/posts/likes/${postId}`, {
       method: !isLike ? "PUT" : "DELETE",
@@ -139,7 +138,6 @@ class Api {
     }).then(onResponse);
   }
 }
-
 
 const api = new Api("https://api.react-learning.ru/v2/group-10");
 

@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import { Button, Dialog } from '@mui/material';
-import LogoutModal from '../LogoutModal/LogoutModal';
+import React, { useState } from "react";
+import { Button, Dialog } from "@mui/material";
+import LogoutModal from "../LogoutModal/LogoutModal";
 
 function LogOutButton() {
   const [openLogout, setOpenLogout] = useState(false);
