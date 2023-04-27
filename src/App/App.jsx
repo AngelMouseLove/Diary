@@ -75,9 +75,10 @@ function App() {
         </Header>
         <main className={s.container}>
           <Routes>
-            <Route
-              index
-              element={
+            {/* Paths for gh-pages */}
+          {["/", "/Diary"].map((path, index) => {
+            return (
+              <Route path={path} element={
                 token ? (
                   <PostsContext.Provider value={{ setPosts, posts }}>
                     <PostsPage searchTerm={searchTerm} />
@@ -85,8 +86,11 @@ function App() {
                 ) : (
                   <MainPage />
                 )
-              }
-            />
+                }
+                key={index}
+              />
+            );
+          })}
             <Route path="/posts/:postId" element={token && <PostPage />} />
             <Route path="/signup" element={<MainPage />} />
             <Route path="/login" element={<MainPage />} />
